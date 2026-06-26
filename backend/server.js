@@ -95,6 +95,40 @@ app.get('/api/tool-access/:toolId/:orderId', (req, res) => {
   res.json({ access: false });
 });
 
+const articles = require('./articles/articles.json');
+
+app.get('/api/blog', (req, res) => {
+  res.json({ articles });
+});
+
+app.get('/api/blog/:id', (req, res) => {
+  const article = articles.find(a => a.id === req.params.id);
+  if (!article) return res.status(404).json({ error: '文章不存在' });
+  res.json({ article });
+});
+
+app.get('/sitemap.xml', (req, res) => {
+  const baseUrl = `${req.protocol}://${req.get('host')}`;
+  const urls = [
+    { loc: baseUrl + '/', priority: '1.0' },
+    { loc: baseUrl + '/blog/index.html', priority: '0.9' },
+    ...tools.map(t => ({ loc: `${baseUrl}/tool.html?id=${t.id}`, priority: t.pro ? '0.7' : '0.8' })),
+    ...articles.map(a => ({ loc: `${baseUrl}/blog/article.html?id=${a.id}`, priority: '0.6' }))
+  ];
+  res.set('Content-Type', 'application/xml');
+  res.send(`<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  ${urls.map(u => `<url><loc>${u.loc}</loc><priority>${u.priority}</priority></url>`).join('\n  ')}
+</urlset>`);
+});
+
+app.get('/robots.txt', (req, res) => {
+  res.set('Content-Type', 'text/plain');
+  res.send(`User-agent: *
+Allow: /
+Sitemap: ${req.protocol}://${req.get('host')}/sitemap.xml`);
+});
+
 app.listen(PORT, () => {
   console.log(`工具箱API已启动: http://localhost:${PORT}`);
 });

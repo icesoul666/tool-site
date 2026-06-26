@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>博客 - 在线工具箱</title>
+<meta name="description" content="在线工具使用技巧、教程和行业资讯">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+.blog-list { max-width: 800px; margin: 0 auto; }
+.blog-card { background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); transition: transform 0.2s; cursor: pointer; }
+.blog-card:hover { transform: translateY(-2px); }
+.blog-card h2 { font-size: 1.3em; margin-bottom: 10px; color: #1a1a2e; }
+.blog-card .meta { color: #999; font-size: 0.85em; margin-bottom: 10px; }
+.blog-card p { color: #666; line-height: 1.6; }
+.blog-card .tags { margin-top: 10px; }
+.blog-card .tags span { display: inline-block; background: #f0f0f5; padding: 3px 10px; border-radius: 12px; font-size: 0.8em; color: #667eea; margin-right: 5px; }
+header { padding: 30px 0; }
+header h1 { font-size: 1.8em; }
+header p { font-size: 1em; }
+.blog-nav { text-align: center; margin-top: 15px; }
+.blog-nav a { color: white; opacity: 0.85; margin: 0 15px; text-decoration: none; font-size: 0.95em; }
+.blog-nav a:hover { opacity: 1; }
+</style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1><a href="../index.html" style="color:white;text-decoration:none">在线工具箱</a></h1>
+    <div class="blog-nav">
+      <a href="../index.html">工具</a>
+      <a href="index.html">博客</a>
+    </div>
+  </div>
+</header>
+<div class="container">
+  <div class="blog-list" id="blogList">
+    <p style="text-align:center;padding:40px;color:#999">加载中...</p>
+  </div>
+</div>
+<footer><div class="container"><p>在线工具箱 &copy; 2026</p></div></footer>
+<script>
+const API = window.location.origin + '/api';
+
+async function loadBlog() {
+  try {
+    const r = await fetch(API + '/blog');
+    const data = await r.json();
+    const list = document.getElementById('blogList');
+    list.innerHTML = data.articles.map(a => `
+      <div class="blog-card" onclick="location.href='article.html?id=${a.id}'">
+        <div class="meta">${a.date} · ${a.keywords.split(',').slice(0,2).join('、')}</div>
+        <h2>${a.title}</h2>
+        <p>${a.summary}</p>
+        <div class="tags">${a.keywords.split(',').map(k => `<span>${k.trim()}</span>`).join('')}</div>
+      </div>
+    `).join('');
+  } catch(e) {
+    document.getElementById('blogList').innerHTML = '<p style="text-align:center;padding:40px">加载失败</p>';
+  }
+}
+loadBlog();
+</script>
+</body>
+</html>
