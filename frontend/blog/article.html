@@ -87,15 +87,15 @@ async function loadArticle() {
     if (others.length) {
       html += `<div class="related-section"><h3>Related Articles</h3>${others.map(x => `<a href="article.html?id=${x.id}">→ ${x.title}</a><br>`).join('')}</div>`;
     }
-    content.innerHTML = html + `
-      <div style="margin:30px 0;text-align:center;min-height:90px">
-        <script async="async" data-cfasync="false" src="https://pl30084479.effectivecpmnetwork.com/7918889a6a2e82790342dc6ad4344a37/invoke.js"></script>
-        <div id="container-7918889a6a2e82790342dc6ad4344a37"></div>
-      </div>` + `
-      <div style="margin-top:40px;padding:25px;background:#f8f9fa;border-radius:12px;text-align:center;border:1px solid #eee">
-        <p style="color:#666;margin-bottom:12px;font-size:0.95em">If you found this helpful, consider buying me a coffee ☕</p>
-        <a href="https://ko-fi.com/icesoul66" target="_blank" style="display:inline-block;padding:10px 30px;background:#ff5e5b;color:white;border-radius:8px;text-decoration:none;font-weight:600;font-size:1em">☕ Buy me a coffee</a>
-      </div>`;
+    content.innerHTML = html +
+      '<div style="margin:30px 0;text-align:center;min-height:90px"><div id="container-7918889a6a2e82790342dc6ad4344a37"></div></div>' +
+      '<div style="margin-top:40px;padding:25px;background:#f8f9fa;border-radius:12px;text-align:center;border:1px solid #eee">' +
+      '<p style="color:#666;margin-bottom:12px;font-size:0.95em">If you found this helpful, consider buying me a coffee &#9749;</p>' +
+      '<a href="https://ko-fi.com/icesoul66" target="_blank" style="display:inline-block;padding:10px 30px;background:#ff5e5b;color:white;border-radius:8px;text-decoration:none;font-weight:600;font-size:1em">&#9749; Buy me a coffee</a></div>';
+    const s = document.createElement('script');
+    s.src = 'https://pl30084479.effectivecpmnetwork.com/7918889a6a2e82790342dc6ad4344a37/invoke.js';
+    s.async = true; s.setAttribute('data-cfasync', 'false');
+    document.getElementById('container-7918889a6a2e82790342dc6ad4344a37').appendChild(s);
   } catch(e) {
     document.getElementById('articleContent').innerHTML = '<p style="text-align:center;padding:40px">Failed to load article</p>';
   }
