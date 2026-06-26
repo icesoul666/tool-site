@@ -3,63 +3,76 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>博客 - 在线工具箱</title>
-<meta name="description" content="在线工具使用技巧、教程和行业资讯">
+<title>全部文章 - AI工具教程</title>
+<meta name="description" content="AI工具教程：ChatGPT、Claude、Midjourney、AI编程等最新教程和评测">
 <link rel="stylesheet" href="../css/style.css">
 <style>
-.blog-list { max-width: 800px; margin: 0 auto; }
-.blog-card { background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); transition: transform 0.2s; cursor: pointer; }
+header { padding: 20px 0; }
+header h1 { font-size: 1.5em; }
+.blog-list { max-width: 800px; margin: 30px auto; }
+.blog-card { background: white; border-radius: 12px; padding: 24px; margin-bottom: 18px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); cursor: pointer; transition: transform 0.2s; }
 .blog-card:hover { transform: translateY(-2px); }
-.blog-card h2 { font-size: 1.3em; margin-bottom: 10px; color: #1a1a2e; }
-.blog-card .meta { color: #999; font-size: 0.85em; margin-bottom: 10px; }
-.blog-card p { color: #666; line-height: 1.6; }
-.blog-card .tags { margin-top: 10px; }
-.blog-card .tags span { display: inline-block; background: #f0f0f5; padding: 3px 10px; border-radius: 12px; font-size: 0.8em; color: #667eea; margin-right: 5px; }
-header { padding: 30px 0; }
-header h1 { font-size: 1.8em; }
-header p { font-size: 1em; }
-.blog-nav { text-align: center; margin-top: 15px; }
-.blog-nav a { color: white; opacity: 0.85; margin: 0 15px; text-decoration: none; font-size: 0.95em; }
-.blog-nav a:hover { opacity: 1; }
+.blog-card .cat-tag { display: inline-block; background: #f0f0f5; padding: 3px 10px; border-radius: 10px; font-size: 0.8em; color: #667eea; margin-bottom: 8px; }
+.blog-card h2 { font-size: 1.2em; margin-bottom: 8px; line-height: 1.4; }
+.blog-card p { color: #888; font-size: 0.9em; line-height: 1.5; }
+.blog-card .meta { margin-top: 10px; color: #bbb; font-size: 0.8em; }
+.page-nav { text-align: center; margin: 30px 0; }
+.page-nav button { padding: 8px 20px; margin: 0 5px; border: 1px solid #ddd; background: white; border-radius: 8px; cursor: pointer; }
+.page-nav button:hover { background: #667eea; color: white; border-color: #667eea; }
+.page-nav button:disabled { opacity: 0.4; cursor: default; }
 </style>
 </head>
 <body>
 <header>
   <div class="container">
-    <h1><a href="../index.html" style="color:white;text-decoration:none">在线工具箱</a></h1>
-    <div class="blog-nav">
-      <a href="../index.html">工具</a>
-      <a href="index.html">博客</a>
-    </div>
+    <h1><a href="../index.html" style="color:white;text-decoration:none">AI工具教程</a></h1>
   </div>
 </header>
 <div class="container">
-  <div class="blog-list" id="blogList">
+  <h2 style="margin-bottom:5px" id="pageTitle">全部文章</h2>
+  <p style="color:#999;margin-bottom:20px" id="totalCount">加载中...</p>
+  <div class="blog-list" id="articleList">
     <p style="text-align:center;padding:40px;color:#999">加载中...</p>
   </div>
+  <div class="page-nav" id="pageNav"></div>
 </div>
-<footer><div class="container"><p>在线工具箱 &copy; 2026</p></div></footer>
+<footer><div class="container"><p>AI工具教程 &copy; 2026</p></div></footer>
 <script>
 const API = window.location.origin + '/api';
+const params = new URLSearchParams(location.search);
+const cat = params.get('cat');
+let page = 1, totalPages = 1;
 
-async function loadBlog() {
-  try {
-    const r = await fetch(API + '/blog');
-    const data = await r.json();
-    const list = document.getElementById('blogList');
-    list.innerHTML = data.articles.map(a => `
-      <div class="blog-card" onclick="location.href='article.html?id=${a.id}'">
-        <div class="meta">${a.date} · ${a.keywords.split(',').slice(0,2).join('、')}</div>
-        <h2>${a.title}</h2>
-        <p>${a.summary}</p>
-        <div class="tags">${a.keywords.split(',').map(k => `<span>${k.trim()}</span>`).join('')}</div>
-      </div>
-    `).join('');
-  } catch(e) {
-    document.getElementById('blogList').innerHTML = '<p style="text-align:center;padding:40px">加载失败</p>';
-  }
+async function loadArticles(p = 1) {
+  page = p;
+  let url = API + '/articles?page=' + page + '&limit=20';
+  if (cat) url += '&category=' + encodeURIComponent(cat);
+  const r = await fetch(url);
+  const data = await r.json();
+  totalPages = data.totalPages;
+  document.getElementById('totalCount').textContent = cat ? `分类: ${cat} · 共 ${data.total} 篇` : `共 ${data.total} 篇文章`;
+  document.getElementById('pageTitle').textContent = cat ? cat + ' 相关文章' : '全部文章';
+  document.title = (cat ? cat + ' - ' : '') + 'AI工具教程';
+  document.getElementById('articleList').innerHTML = data.articles.map(a => `
+    <div class="blog-card" onclick="location.href='article.html?id=${a.id}'">
+      <div class="cat-tag">${a.category}</div>
+      <h2>${a.title}</h2>
+      <p>${(a.summary || a.content[0] || '').slice(0, 120)}...</p>
+      <div class="meta">${a.date}</div>
+    </div>
+  `).join('') || '<p style="text-align:center;padding:40px;color:#999">暂无文章</p>';
+  renderPagination();
 }
-loadBlog();
+
+function renderPagination() {
+  if (totalPages <= 1) { document.getElementById('pageNav').innerHTML = ''; return; }
+  let html = '';
+  if (page > 1) html += `<button onclick="loadArticles(${page - 1})">上一页</button>`;
+  html += `<span style="margin:0 15px;color:#999">${page} / ${totalPages}</span>`;
+  if (page < totalPages) html += `<button onclick="loadArticles(${page + 1})">下一页</button>`;
+  document.getElementById('pageNav').innerHTML = html;
+}
+loadArticles(1);
 </script>
 </body>
 </html>

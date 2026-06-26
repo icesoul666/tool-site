@@ -3,91 +3,95 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>文章 - 在线工具箱</title>
+<title>文章 - AI工具教程</title>
 <link rel="stylesheet" href="../css/style.css">
 <style>
-.article-container { max-width: 800px; margin: 0 auto; background: white; border-radius: 12px; padding: 40px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
-.article-container h1 { font-size: 1.8em; margin-bottom: 15px; color: #1a1a2e; }
-.article-container .meta { color: #999; font-size: 0.9em; margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid #eee; }
-.article-container .content { line-height: 1.8; color: #333; font-size: 1em; }
-.article-container .content h2 { font-size: 1.4em; margin: 30px 0 15px; color: #1a1a2e; }
-.article-container .content h3 { font-size: 1.15em; margin: 25px 0 10px; color: #1a1a2e; }
-.article-container .content p { margin-bottom: 15px; }
-.article-container .content ul, .article-container .content ol { margin-bottom: 15px; padding-left: 25px; }
-.article-container .content li { margin-bottom: 5px; }
-.article-container .content a { color: #667eea; text-decoration: underline; }
-.article-container .content table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-.article-container .content th, .article-container .content td { padding: 10px 15px; border: 1px solid #eee; text-align: left; }
-.article-container .content th { background: #f8f9fa; font-weight: 600; }
-.related-tools { margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; }
-.related-tools h3 { margin-bottom: 10px; }
-.related-tools a { display: inline-block; background: #f0f0f5; padding: 8px 16px; border-radius: 8px; color: #667eea; text-decoration: none; margin-right: 10px; margin-bottom: 10px; }
-.related-tools a:hover { background: #e0e0f0; }
+.article-wrap { max-width: 800px; margin: 0 auto; }
+.article-body { background: white; border-radius: 12px; padding: 40px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
+.article-body h1 { font-size: 1.8em; margin-bottom: 12px; }
+.article-body .meta { color: #999; font-size: 0.9em; margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid #eee; }
+.article-body .content { line-height: 1.8; color: #444; font-size: 1em; }
+.article-body .content h2 { font-size: 1.35em; margin: 30px 0 12px; }
+.article-body .content h3 { font-size: 1.1em; margin: 22px 0 8px; }
+.article-body .content p { margin-bottom: 14px; }
+.article-body .content ul, .article-body .content ol { margin-bottom: 14px; padding-left: 22px; }
+.article-body .content li { margin-bottom: 4px; }
+.article-body .content a { color: #667eea; }
+.article-body .content table { width: 100%; border-collapse: collapse; margin: 18px 0; font-size: 0.95em; }
+.article-body .content th, .article-body .content td { padding: 8px 12px; border: 1px solid #eee; text-align: left; }
+.article-body .content th { background: #f8f9fa; font-weight: 600; }
+.article-body .content code { background: #f0f0f5; padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
 header { padding: 20px 0; }
-.blog-nav { text-align: center; margin-top: 10px; }
-.blog-nav a { color: white; opacity: 0.85; margin: 0 15px; text-decoration: none; font-size: 0.95em; }
+header h1 { font-size: 1.5em; }
+.related-section { margin-top: 25px; }
+.related-section h3 { margin-bottom: 10px; font-size: 1em; }
+.related-section a { color: #667eea; text-decoration: none; font-size: 0.9em; margin-right: 10px; }
+.related-section a:hover { text-decoration: underline; }
+.adsense-placeholder { background: #f8f9fa; border-radius: 8px; padding: 20px; text-align: center; color: #ccc; margin: 30px 0; font-size: 0.9em; border: 1px dashed #ddd; }
 </style>
 </head>
 <body>
 <header>
   <div class="container">
-    <h1><a href="../index.html" style="color:white;text-decoration:none">在线工具箱</a></h1>
-    <div class="blog-nav">
-      <a href="../index.html">工具</a>
-      <a href="index.html">博客</a>
-    </div>
+    <h1><a href="../index.html" style="color:white;text-decoration:none">AI工具教程</a></h1>
   </div>
 </header>
 <div class="container">
-  <div class="article-container" id="article">
-    <p style="text-align:center;padding:40px;color:#999">加载中...</p>
+  <div class="article-wrap">
+    <div class="article-body" id="articleContent">
+      <p style="text-align:center;padding:40px;color:#999">加载中...</p>
+    </div>
   </div>
 </div>
-<footer><div class="container"><p>在线工具箱 &copy; 2026</p></div></footer>
+<footer><div class="container"><p>AI工具教程 &copy; 2026</p></div></footer>
 <script>
 const API = window.location.origin + '/api';
 const params = new URLSearchParams(location.search);
 const articleId = params.get('id');
 
+function renderContent(content) {
+  return content.map(line => {
+    if (!line.trim()) return '';
+    if (line.startsWith('## ')) return `<h2>${line.slice(3)}</h2>`;
+    if (line.startsWith('### ')) return `<h3>${line.slice(4)}</h3>`;
+    if (line.startsWith('- ')) return `<li>${line.slice(2)}</li>`;
+    if (line.startsWith('| ')) {
+      if (line.includes('---') || line.includes('--')) return '';
+      return `<tr>${line.split('|').filter(c=>c.trim()).map(c=>`<td>${c.trim()}</td>`).join('')}</tr>`;
+    }
+    if (line.startsWith('**')) {
+      const bold = line.match(/\*\*(.+?)\*\*/);
+      if (bold && line.trim() === '**' + bold[1] + '**') return `<h3>${bold[1]}</h3>`;
+    }
+    let html = line;
+    html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    return `<p>${html}</p>`;
+  }).join('\n');
+}
+
 async function loadArticle() {
   try {
-    const r = await fetch(API + '/blog/' + articleId);
+    const r = await fetch(API + '/articles/' + articleId);
     const data = await r.json();
     const a = data.article;
-    document.title = a.title + ' - 在线工具箱';
-    document.querySelector('meta[name="description"]').content = a.summary;
-    const container = document.getElementById('article');
-    container.innerHTML = `
+    document.title = a.title + ' - AI工具教程';
+    const content = document.getElementById('articleContent');
+    let html = `
       <h1>${a.title}</h1>
-      <div class="meta">${a.date} · ${a.keywords.split(',').slice(0,3).join('、')}</div>
-      <div class="content">${a.content.map(p => {
-        if (p.startsWith('## ')) return `<h2>${p.slice(3)}</h2>`;
-        if (p.startsWith('### ')) return `<h3>${p.slice(4)}</h3>`;
-        if (p.startsWith('- ')) return `<li>${p.slice(2)}</li>`;
-        if (p.startsWith('| ')) { return p.includes('---') ? '' : `<tr>${p.split('|').filter(c=>c.trim()).map(c=>`<td>${c.trim()}</td>`).join('')}</tr>`; }
-        return `<p>${p}</p>`;
-      }).join('')}</div>
-      ${a.relatedTools && a.relatedTools.length ? `
-      <div class="related-tools">
-        <h3>相关工具</h3>
-        ${a.relatedTools.map(t => `<a href="../tool.html?id=${t}">${getToolName(t)}</a>`).join('')}
-      </div>` : ''}
+      <div class="meta">${a.date} · ${a.category}</div>
+      <div class="content">${renderContent(a.content)}</div>
     `;
+    const related = await fetch(API + '/articles?category=' + encodeURIComponent(a.category) + '&limit=4').then(r => r.json());
+    const others = related.articles.filter(x => x.id !== a.id).slice(0, 3);
+    if (others.length) {
+      html += `<div class="related-section"><h3>相关文章</h3>${others.map(x => `<a href="article.html?id=${x.id}">→ ${x.title}</a><br>`).join('')}</div>`;
+    }
+    content.innerHTML = html;
   } catch(e) {
-    document.getElementById('article').innerHTML = '<p style="text-align:center;padding:40px">文章加载失败</p>';
+    document.getElementById('articleContent').innerHTML = '<p style="text-align:center;padding:40px">文章加载失败</p>';
   }
 }
-function getToolName(id) {
-  const names = {
-    'image-compressor': '图片压缩', 'image-converter': '格式转换',
-    'qr-generator': '二维码生成', 'json-formatter': 'JSON格式化',
-    'text-counter': '字数统计', 'pdf-merge': 'PDF合并',
-    'pdf-split': 'PDF拆分', 'bulk-resize': '批量缩放',
-    'watermark': '加水印', 'seo-analyzer': 'SEO分析'
-  };
-  return names[id] || id;
-}
-if (articleId) loadArticle(); else document.getElementById('article').innerHTML = '<p style="text-align:center;padding:40px">未指定文章</p>';
+if (articleId) loadArticle();
 </script>
 </body>
 </html>
