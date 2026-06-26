@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI工具教程 - 2026最新AI工具评测与使用指南</title>
+<title>AI Tools Tutorial - Best AI Tool Reviews & Guides 2026</title>
 <meta name="google-site-verification" content="Xi1xTv4VU857jKZpJWYXRiRYdjHlUFR_YRhr8fkvdrU" />
 <meta name="msvalidate.01" content="7493514D581C5994E4C0A986A59119EA" />
-<meta name="description" content="AI工具教程站，提供最新AI工具评测、使用教程、Prompt技巧。涵盖ChatGPT、Claude、Midjourney等热门AI工具。">
+<meta name="description" content="AI tools tutorials, reviews, and guides. Covering ChatGPT, Claude, Midjourney, AI coding tools, and more. Updated daily.">
 <link rel="stylesheet" href="css/style.css">
 <style>
 header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px 0; color: white; text-align: center; }
@@ -53,38 +53,38 @@ header p { opacity: 0.9; font-size: 1.1em; max-width: 600px; margin: 0 auto; lin
 </head>
 <body>
 <header>
-  <h1>AI工具教程</h1>
-  <p>最新AI工具评测、使用教程与行业资讯，帮你掌握AI时代的生产力工具</p>
+  <h1>AI Tools Tutorial</h1>
+  <p>Latest AI tool reviews, tutorials, and guides. Master the AI-powered productivity tools of 2026.</p>
 </header>
 <div class="nav-bar">
-  <a href="index.html">首页</a>
-  <a href="blog/index.html">全部文章</a>
+  <a href="index.html">Home</a>
+  <a href="blog/index.html">All Articles</a>
   <a href="blog/index.html?cat=ChatGPT">ChatGPT</a>
   <a href="blog/index.html?cat=Claude">Claude</a>
-  <a href="blog/index.html?cat=AI绘图">AI绘图</a>
-  <a href="blog/index.html?cat=AI编程">AI编程</a>
-  <a href="blog/index.html?cat=AI工具">AI工具</a>
-  <a href="blog/index.html?cat=AI赚钱">AI赚钱</a>
+  <a href="blog/index.html?cat=AI%20Art">AI Art</a>
+  <a href="blog/index.html?cat=AI%20Coding">AI Coding</a>
+  <a href="blog/index.html?cat=AI%20Tools">AI Tools</a>
+  <a href="blog/index.html?cat=Make%20Money">Make Money</a>
 </div>
 <div class="container">
   <div class="featured-section">
-    <h2 style="margin-bottom:15px">精选文章</h2>
+    <h2 style="margin-bottom:15px">Featured Articles</h2>
     <div class="featured-grid" id="featuredGrid">
       <p style="color:#999">加载中...</p>
     </div>
   </div>
   <div class="cat-section" id="catSections"></div>
   <div class="subscribe">
-    <h2>订阅更新</h2>
-    <p>每周获取最新AI工具教程和赚钱技巧</p>
+    <h2>Stay Updated</h2>
+    <p>Get the latest AI tutorials and money-making tips weekly</p>
     <div>
-      <input type="email" placeholder="输入邮箱地址" id="subEmail">
-      <button onclick="subscribe()">订阅</button>
+      <input type="email" placeholder="Enter your email" id="subEmail">
+      <button onclick="subscribe()">Subscribe</button>
     </div>
   </div>
 </div>
-<footer><div class="container"><p>AI工具教程 &copy; 2026 - 探索AI的无限可能</p></div></footer>
-<div class="donate-float"><a href="https://ko-fi.com/icesoul66" target="_blank" style="background:#ff5e5b">☕ 请我喝咖啡</a></div>
+<footer><div class="container"><p>AI Tools Tutorial &copy; 2026 - Explore the infinite possibilities of AI</p></div></footer>
+<div class="donate-float"><a href="https://ko-fi.com/icesoul66" target="_blank" style="background:#ff5e5b">☕ Buy me a coffee</a></div>
 <script>
 const API = window.location.origin + '/api';
 
@@ -128,7 +128,7 @@ async function init() {
       <div class="cat-section">
         <div class="cat-header">
           <h2>${cat.category}</h2>
-          <a href="blog/index.html?cat=${encodeURIComponent(cat.category)}">查看更多 →</a>
+          <a href="blog/index.html?cat=${encodeURIComponent(cat.category)}">View All →</a>
         </div>
         <div class="cat-grid">
           ${data.articles.map(a => `
@@ -148,7 +148,7 @@ async function init() {
 function subscribe() {
   const email = document.getElementById('subEmail').value;
   if (email) {
-    alert('感谢订阅！功能即将上线，敬请期待。');
+    alert('Thanks for subscribing! Feature coming soon.');
     document.getElementById('subEmail').value = '';
   }
 }

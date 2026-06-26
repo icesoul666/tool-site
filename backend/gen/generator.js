@@ -5,190 +5,185 @@ const articlesPath = path.join(__dirname, '../articles/articles.json');
 const articleTemplates = [
   {
     category: 'ChatGPT',
-    title: (n) => `ChatGPT ${n}个实用Prompt技巧，提升工作效率`,
-    keywords: () => 'ChatGPT,Prompt技巧,AI提示词,工作效率',
+    title: (n) => `${n} Powerful ChatGPT Prompts to Boost Your Productivity in 2026`,
+    keywords: () => 'ChatGPT, prompts, AI tips, productivity, prompt engineering',
     content: () => {
       const tips = [
-        { t: '角色扮演法：让AI扮演特定角色', d: '在Prompt开头设定角色，例如"你是一名资深律师""你是一位营销专家"，能让AI的输出更专业、更有针对性。' },
-        { t: '分步骤提问法', d: '复杂任务拆分成多个小步骤，逐步提问而不是一次性要求全部完成。这样AI的回答会更准确、更完整。' },
-        { t: '提供示例法', d: '在提问时给出1-2个示例，告诉AI你期望的输出格式和风格。AI的模仿能力很强，好的示例能显著提升输出质量。' },
-        { t: '限制范围法', d: '明确告诉AI回答的字数范围、格式要求、专业程度等限制条件，避免答案过于宽泛或偏离主题。' },
-        { t: '迭代优化法', d: '第一次生成的答案可能不够好，让AI基于已有结果进行修改、扩写或精简，逐步逼近理想效果。' },
-        { t: '结构化输出法', d: '要求AI用Markdown、表格、列表等结构化格式输出，便于阅读和后续处理。' },
-        { t: '反向思维法', d: '问AI"不应该怎么做"或"常见的错误是什么"，从反面角度获取更有价值的见解。' },
-        { t: '多重视角法', d: '要求AI从不同角度分析同一问题，获得全面的视角。例如"从技术角度和商业角度分别分析"。' },
+        { t: 'Role Play Method', d: 'Start your prompt by assigning a role. Example: "Act as a senior lawyer" or "You are a marketing expert." This dramatically improves output quality and relevance.' },
+        { t: 'Step-by-Step Approach', d: 'Break complex tasks into smaller steps rather than asking everything at once. The AI will produce more accurate and complete answers.' },
+        { t: 'Provide Examples', d: 'Give the AI 1-2 examples of the format and style you want. AI excels at mimicking patterns, and good examples significantly improve output quality.' },
+        { t: 'Set Constraints', d: 'Specify word count, format, tone, and expertise level. This prevents overly broad or off-topic answers.' },
+        { t: 'Iterative Refinement', d: 'The first answer isn\'t always perfect. Ask the AI to modify, expand, or simplify based on the initial result.' },
+        { t: 'Structured Output', d: 'Ask the AI to format responses using Markdown, tables, or bullet points for better readability and easier processing.' },
+        { t: 'Reverse Thinking', d: 'Ask "What should I NOT do?" or "What are common mistakes?" to get valuable insights from a different angle.' },
+        { t: 'Multiple Perspectives', d: 'Ask the AI to analyze a problem from different angles, e.g., "Analyze this from both technical and business perspectives."' },
       ];
       const selected = tips.sort(() => Math.random() - 0.5).slice(0, 5 + Math.floor(Math.random() * 3));
       return [
-        `ChatGPT已经成为全球最热门的AI工具之一。但很多人只是简单地问问题，没有充分发挥它的潜力。本文将分享多个实用的Prompt技巧，帮你把ChatGPT用得更高效。`,
-        `## 为什么Prompt技巧很重要？`,
-        `同样的ChatGPT，不同人用出来的效果天差地别。关键就在于Prompt（提示词）的质量。一个好的Prompt能让AI理解你的真实需求，给出高质量的答案。`,
-        `## 核心技巧`,
+        `ChatGPT has become one of the most popular AI tools worldwide. However, most users only scratch the surface by asking simple questions. This guide reveals powerful prompt techniques to help you get the most out of ChatGPT.`,
+        `## Why Prompt Engineering Matters`,
+        `The same ChatGPT model can produce vastly different results depending on how you phrase your prompts. Good prompt engineering is the key to unlocking AI's full potential.`,
+        `## Core Techniques`,
         ...selected.flatMap(t => [`### ${t.t}`, t.d]),
-        `## 进阶技巧：组合使用`,
-        `以上技巧可以组合使用，效果更佳。例如：角色扮演法 + 分步骤提问法 + 结构化输出法，让AI先扮演某个角色，分步骤回答问题，最后用表格形式输出。`,
-        `## 总结`,
-        `掌握Prompt技巧，就是掌握与AI高效沟通的能力。这些技巧不仅适用于ChatGPT，也适用于Claude、Gemini等其他AI工具。多加练习，你也能成为Prompt高手。`,
-        `<p style="color:#999;font-size:0.9em;margin-top:30px">* 本文由AI辅助生成，仅供参考和学习使用</p>`
+        `## Advanced: Combining Techniques`,
+        `These techniques work even better when combined. For example: Role Play + Step-by-Step + Structured Output — have the AI assume a role, break down the problem, and deliver results in a table format.`,
+        `## Conclusion`,
+        `Mastering prompt engineering is essential for effective AI communication. These techniques apply to ChatGPT, Claude, Gemini, and other AI tools. Practice makes perfect!`,
+        `<p style="color:#999;font-size:0.9em;margin-top:30px">* This article was AI-assisted and is for reference only.</p>`
       ];
     }
   },
   {
-    category: 'AI绘图',
-    title: (n) => `Midjourney完全指南：从入门到精通（2026版）`,
-    keywords: () => 'Midjourney,AI绘图,Midjourney教程,AI绘画',
+    category: 'AI Art',
+    title: (n) => `Midjourney Complete Guide: From Beginner to Pro (2026 Edition)`,
+    keywords: () => 'Midjourney, AI art, AI image generation, Midjourney tutorial',
     content: () => {
       const features = [
-        { t: '提示词结构', d: 'Midjourney的提示词通常包含：主体描述 + 环境/背景 + 风格/艺术家 + 参数设定。例如"a cat wearing a hat, cyberpunk style, neon lights --ar 16:9 --v 6"' },
-        { t: '常用参数', d: '--ar 调整宽高比（如16:9, 4:3, 1:1），--v 选择版本（v6为最新），--s 控制风格化程度（0-1000），--iw 控制图片权重。' },
-        { t: '风格参考', d: '使用 --sref 参数可以上传参考图片，让AI模仿指定风格。也可以使用艺术家名字作为风格指引，如"in the style of Studio Ghibli"。' },
-        { t: '图片混合', d: '使用 /blend 命令或 --image 参数混合多张图片，创造出全新的视觉效果。' },
-        { t: '局部重绘', d: '使用 Vary Region 功能选定图片中的特定区域进行重绘，修改细节而不影响整体构图。' },
-        { t: '角色一致性', d: '使用 --cref 参数让同一角色在不同场景中保持外观一致，适合漫画、故事板等需要连贯角色的场景。' },
-        { t: '排版与文字', d: 'Midjourney v6改进了文字渲染能力，可以在提示词中加入文字描述，生成带有标题或标签的图片。' },
-        { t: '图生图', d: '上传现有图片作为起点，AI在此基础上进行变体和优化，适合快速迭代设计方案。' },
+        { t: 'Prompt Structure', d: 'A Midjourney prompt typically includes: Subject description + Environment/Background + Style/Artist + Parameters. Example: "a cat wearing a hat, cyberpunk style, neon lights --ar 16:9 --v 6"' },
+        { t: 'Key Parameters', d: '--ar sets aspect ratio (16:9, 4:3, 1:1), --v selects version (v6 is latest), --s controls stylization (0-1000), --iw controls image weight.' },
+        { t: 'Style References', d: 'Use --sref to upload reference images for style replication. You can also use artist names like "in the style of Studio Ghibli" for stylistic guidance.' },
+        { t: 'Image Blending', d: 'Use the /blend command or --image parameter to mix multiple images and create entirely new visuals.' },
+        { t: 'Local Editing', d: 'Use Vary Region to edit specific areas of an image without affecting the overall composition.' },
+        { t: 'Character Consistency', d: 'Use --cref to keep the same character consistent across different scenes — perfect for comics and storyboards.' },
+        { t: 'Text in Images', d: 'Midjourney v6 improved text rendering. You can include text descriptions in prompts to generate images with labels or titles.' },
+        { t: 'Image to Image', d: 'Upload existing images as a starting point for AI variations and optimizations — ideal for rapid design iteration.' },
       ];
       const selected = features.sort(() => Math.random() - 0.5).slice(0, 5 + Math.floor(Math.random() * 3));
       return [
-        `Midjourney是目前最强大的AI绘图工具之一。无论你是设计师、创作者还是普通爱好者，掌握Midjourney都能让创意表达变得前所未有的简单。`,
-        `## 什么是Midjourney？`,
-        `Midjourney是一款基于Discord的AI图像生成工具。用户通过输入文字描述（Prompt），AI就能生成对应的图片。从写实照片到卡通风格，从插画到3D渲染，Midjourney几乎可以胜任任何视觉风格。`,
-        `## 如何开始使用？`,
-        `1. 注册Discord账号\n2. 加入Midjourney官方服务器\n3. 订阅套餐（基础版$10/月起）\n4. 在任何频道输入 /imagine 开始生成`,
-        `## 核心功能详解`,
+        `Midjourney is one of the most powerful AI art tools available. Whether you're a designer, creator, or hobbyist, mastering Midjourney makes creative expression easier than ever.`,
+        `## What is Midjourney?`,
+        `Midjourney is an AI image generator that runs on Discord. Users input text descriptions (prompts), and the AI generates corresponding images — from photorealistic photos to cartoon styles, illustrations, and 3D renders.`,
+        `## Getting Started`,
+        `1. Create a Discord account\n2. Join the Midjourney official server\n3. Subscribe (Basic plan starts at $10/month)\n4. Type /imagine in any channel to start generating`,
+        `## Key Features`,
         ...selected.flatMap(t => [`### ${t.t}`, t.d]),
-        `## 实用技巧`,
-        `- 使用"4K, highly detailed, photorealistic"等关键词提升画质\n- 多尝试不同风格的组合，会有意想不到的惊喜\n- 生成后使用Upscale功能提升分辨率\n- 善用Seed值保持风格一致性`,
-        `## 总结`,
-        `Midjourney正在改变创意工作的方式。掌握它，就是掌握未来的视觉表达能力。从今天开始，动手试试吧！`,
-        `<p style="color:#999;font-size:0.9em;margin-top:30px">* 本文由AI辅助生成，仅供参考和学习使用</p>`
+        `## Pro Tips`,
+        `- Use "4K, highly detailed, photorealistic" keywords for better quality\n- Experiment with different style combinations\n- Use the Upscale feature for higher resolution\n- Leverage Seed values for style consistency`,
+        `## Conclusion`,
+        `Midjourney is transforming creative work. Mastering it means mastering the future of visual expression. Start experimenting today!`,
+        `<p style="color:#999;font-size:0.9em;margin-top:30px">* This article was AI-assisted and is for reference only.</p>`
       ];
     }
   },
   {
-    category: 'AI工具',
-    title: (n) => `${n}款2026年最好用的免费AI工具推荐`,
-    keywords: () => 'AI工具推荐,免费AI工具,AI productivity tools,AI应用',
+    category: 'AI Tools',
+    title: (n) => `Top ${n} Free AI Tools You Should Use in 2026`,
+    keywords: () => 'AI tools, free AI tools, productivity, AI applications',
     content: () => {
       const tools = [
-        { t: 'Stable Diffusion 3', d: '开源的AI绘图工具，完全免费，可本地运行。生成质量大幅提升，支持文字渲染。' },
-        { t: 'Google Gemini', d: 'Google的多模态AI，支持文本、图片、音频、视频分析。免费版功能强大，性价比极高。' },
-        { t: 'Claude 4', d: 'Anthropic推出的最强AI模型，在编程、写作、分析方面表现出色，免费版每日有使用限制。' },
-        { t: 'GitHub Copilot', d: 'AI编程助手，支持VS Code、JetBrains等主流IDE。免费版对学生和开源项目开放。' },
-        { t: 'Perplexity AI', d: 'AI搜索引擎，提供带引用的实时答案。免费版即可使用Claude和GPT-4模型。' },
-        { t: 'Canva AI', d: '在线设计工具集成了多项AI功能，包括AI生图、文字转设计、背景移除等。' },
-        { t: 'Notion AI', d: '笔记和项目管理工具内置AI助手，可辅助写作、翻译、总结。' },
-        { t: 'Runway ML', d: 'AI视频编辑平台，支持文字生成视频、视频风格迁移等高级功能。' },
+        { t: 'Stable Diffusion 3', d: 'Open-source AI art generator, completely free, runs locally. Significantly improved quality with better text rendering.' },
+        { t: 'Google Gemini', d: 'Google\'s multimodal AI supporting text, images, audio, and video analysis. The free tier is remarkably capable.' },
+        { t: 'Claude 4', d: 'Anthropic\'s most powerful AI model. Excels at coding, writing, and analysis. Free tier available with daily usage limits.' },
+        { t: 'GitHub Copilot', d: 'AI coding assistant supporting VS Code, JetBrains, and other IDEs. Free for students and open-source projects.' },
+        { t: 'Perplexity AI', d: 'AI search engine providing real-time answers with citations. Free tier includes Claude and GPT-4 models.' },
+        { t: 'Canva AI', d: 'Online design platform with integrated AI features including AI image generation, text-to-design, and background removal.' },
+        { t: 'Notion AI', d: 'Note-taking and project management tool with built-in AI for writing assistance, translation, and summarization.' },
+        { t: 'Runway ML', d: 'AI video editing platform supporting text-to-video generation and video style transfer.' },
       ];
       const selection = tools.sort(() => Math.random() - 0.5).slice(0, 6);
       return [
-        `2026年AI工具已经渗透到各个领域。本文将为你推荐最实用的免费AI工具，涵盖写作、绘图、编程、视频等多个类别。`,
-        `## 为什么选择免费AI工具？`,
-        `大多数AI工具都有免费套餐，足够日常使用。在投入付费之前，先用免费工具体验和评估，选择最适合自己的工具。`,
-        `## 工具推荐`,
+        `AI tools have become essential in 2026. This guide covers the most practical free AI tools across writing, design, coding, and video categories.`,
+        `## Why Choose Free AI Tools?`,
+        `Most AI tools offer generous free tiers sufficient for daily use. Try before you buy — experiment with free versions to find what works best for your workflow.`,
+        `## Top Recommendations`,
         ...selection.flatMap(t => [`### ${t.t}`, t.d]),
-        `## 如何选择适合自己的工具？`,
-        `根据你的需求来选择：\n- 需要写作辅助：Claude 4、Notion AI\n- 需要图片生成：Stable Diffusion 3、Canva AI\n- 需要编程帮助：GitHub Copilot、Perplexity AI\n- 需要视频编辑：Runway ML`,
-        `## 总结`,
-        `2026年的免费AI工具已经足够强大，关键是找到适合你工作流的工具组合。建议从1-2个工具开始，逐步扩展到完整的AI工具链。`,
-        `<p style="color:#999;font-size:0.9em;margin-top:30px">* 本文由AI辅助生成，仅供参考和学习使用</p>`
+        `## How to Choose`,
+        `Match tools to your needs:\n- Writing: Claude 4, Notion AI\n- Image generation: Stable Diffusion 3, Canva AI\n- Coding: GitHub Copilot, Perplexity AI\n- Video editing: Runway ML`,
+        `## Conclusion`,
+        `Free AI tools in 2026 are powerful enough to transform your productivity. Start with 1-2 tools and gradually build your AI toolkit.`,
+        `<p style="color:#999;font-size:0.9em;margin-top:30px">* This article was AI-assisted and is for reference only.</p>`
       ];
     }
   },
   {
-    category: 'AI编程',
-    title: (n) => `AI编程助手深度对比：Cursor vs Copilot vs Codeium`,
-    summary: () => '全面对比三大AI编程助手的功能、价格和实际表现',
-    keywords: () => 'AI编程,Cursor,Copilot,Codeium,AI代码辅助,编程效率',
-    content: () => {
-      return [
-        `AI编程助手正在改变软件开发的方式。本文将从功能、价格、实际表现三个维度，深度对比目前最主流的三大AI编程助手。`,
+    category: 'AI Coding',
+    title: (n) => `AI Coding Assistants Compared: Cursor vs Copilot vs Codeium (2026)`,
+    keywords: () => 'AI coding, Cursor, Copilot, Codeium, programming, code assistant',
+    content: () => [
+        `AI coding assistants are transforming software development. This in-depth comparison covers the three most popular tools across features, pricing, and real-world performance.`,
         `## Cursor`,
-        `Cursor是基于VS Code的AI代码编辑器，集成了最先进的AI编程功能。`,
-        `**核心功能：**\n- Composer：多文件编辑，理解整个项目上下文\n- Tab补全：代码自动补全，速度极快\n- Chat：内置聊天窗口，可引用代码库\n- Agent：自主编程模式，能独立完成任务`,
-        `**价格：** Pro $20/月，免费版每天200次补全`,
-        `**优势：** 对项目整体理解能力最强，Composer功能非常强大`,
-        `**劣势：** 不能使用VS Code的全部扩展，学习曲线较陡`,
+        `Cursor is an AI-first code editor built on VS Code, integrating the most advanced AI coding features.`,
+        `**Key Features:**\n- Composer: Multi-file editing with full project context\n- Tab Completion: Lightning-fast code autocomplete\n- Chat: Built-in chat that references your codebase\n- Agent: Autonomous coding mode`,
+        `**Pricing:** Pro $20/month, Free tier with 200 completions/day`,
+        `**Pros:** Best project-level understanding, powerful Composer feature`,
+        `**Cons:** Doesn't support all VS Code extensions, steeper learning curve`,
         ``,
         `## GitHub Copilot`,
-        `微软和GitHub推出的AI编程助手，是目前用户量最大的编程AI工具。`,
-        `**核心功能：**\n- 代码补全：支持几乎所有编程语言\n- Copilot Chat：VS Code、JetBrains等IDE内置的AI聊天\n- Copilot Workspace：项目级AI辅助`,
-        `**价格：** $10/月或$100/年，学生和开源维护者免费`,
-        `**优势：** IDE集成最好，支持最广泛的语言和框架`,
-        `**劣势：** 代码补全质量有时不如Cursor`,
+        `Microsoft and GitHub's AI coding assistant — the most widely adopted programming AI tool.`,
+        `**Key Features:**\n- Code completion: Supports virtually all programming languages\n- Copilot Chat: Built-in AI chat in VS Code, JetBrains, and more\n- Copilot Workspace: Project-level AI assistance`,
+        `**Pricing:** $10/month or $100/year, free for students and open-source maintainers`,
+        `**Pros:** Best IDE integration, widest language support`,
+        `**Cons:** Completion quality sometimes trails Cursor`,
         ``,
         `## Codeium`,
-        `免费开源的AI编程助手，是Copilot的优秀替代品。`,
-        `**核心功能：**\n- 代码补全：支持超过40种编程语言\n- Chat：内置AI聊天\n- 搜索：AI驱动的代码搜索`,
-        `**价格：** 个人开发者完全免费`,
-        `**优势：** 完全免费，功能不输付费产品`,
-        `**劣势：** 对大型项目的理解能力较弱`,
+        `Free and open-source AI coding assistant — an excellent Copilot alternative.`,
+        `**Key Features:**\n- Code completion: Supports 40+ programming languages\n- Chat: Built-in AI chat\n- Search: AI-powered code search`,
+        `**Pricing:** Completely free for individual developers`,
+        `**Pros:** Free with competitive features`,
+        `**Cons:** Weaker project-level understanding`,
         ``,
-        `## 对比总结`,
-        `| 工具 | 价格 | 代码补全 | 项目理解 | IDE支持 |\n|------|------|---------|---------|--------|\n| Cursor | $20/月 | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | 中等 |\n| Copilot | $10/月 | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | 广泛 |\n| Codeium | 免费 | ⭐⭐⭐⭐ | ⭐⭐⭐ | 广泛 |`,
-        `## 推荐`,
-        `- 预算充足且追求最强功能 → 选Cursor\n- 需要广泛IDE支持 → 选Copilot\n- 零预算 → 选Codeium`,
-        `## 总结`,
-        `AI编程助手已经可以显著提升开发效率。不管你选择哪个工具，都比完全不用AI要高效得多。`,
-        `<p style="color:#999;font-size:0.9em;margin-top:30px">* 本文由AI辅助生成，仅供参考和学习使用</p>`
-      ];
-    }
+        `## Comparison Table`,
+        `| Tool | Price | Completions | Project Understanding | IDE Support |\n|------|-------|------------|---------------------|-------------|\n| Cursor | $20/mo | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | Medium |\n| Copilot | $10/mo | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | Broad |\n| Codeium | Free | ⭐⭐⭐⭐ | ⭐⭐⭐ | Broad |`,
+        `## Recommendations`,
+        `- Best overall → Cursor\n- Best IDE support → Copilot\n- Best free option → Codeium`,
+        `## Conclusion`,
+        `Any AI coding assistant dramatically improves developer productivity. The best choice depends on your specific needs and budget.`,
+        `<p style="color:#999;font-size:0.9em;margin-top:30px">* This article was AI-assisted and is for reference only.</p>`
+      ]
   },
   {
-    category: 'AI赚钱',
-    title: (n) => `普通人用AI赚钱的${n}个真实方法（2026实测）`,
-    keywords: () => 'AI赚钱,副业,AI自动化,被动收入',
+    category: 'Make Money',
+    title: (n) => `${n} Proven Ways to Make Money with AI in 2026`,
+    keywords: () => 'make money with AI, side hustle, passive income, AI automation',
     content: () => {
       const methods = [
-        { t: 'AI自动化服务', d: '为企业搭建AI自动化工作流，如客服机器人、数据自动录入、报表自动生成。月收费$500-$3000。' },
-        { t: 'AI内容创作', d: '用AI批量生成SEO文章、小红书笔记、短视频脚本。接单平台时薪$30-100。' },
-        { t: 'AI课程/教程', d: '将你掌握的AI技能制作成课程，在Udemy、知识付费平台出售。一份课程可卖无数次。' },
-        { t: 'AI工具评测', d: '建立AI工具评测博客/YouTube频道，通过联盟营销赚佣金。热门工具每单佣金$50-200。' },
-        { t: 'AI绘画接单', d: '用Midjourney、Stable Diffusion接单制作头像、插画、海报。单价$10-500不等。' },
-        { t: 'AI提示词贩卖', d: '将高质量的AI提示词整理成包出售。好的提示词市场价$5-50一套。' },
-        { t: 'AI翻译服务', d: '用AI做初步翻译，人工润色后交付。效率提高5倍，时薪可达$50-150。' },
-        { t: '数据分析AI代理', d: '帮小企业用AI分析销售数据、客户数据，提供洞察报告。每单$200-2000。' },
+        { t: 'AI Automation Agency', d: 'Build AI automation workflows for businesses — chatbots, data entry automation, report generation. Charge $500-$3,000/month per client.' },
+        { t: 'AI Content Creation', d: 'Use AI to generate SEO articles, social media posts, and video scripts. Freelance rates range from $30-$100/hour.' },
+        { t: 'AI Courses & Tutorials', d: 'Package your AI skills into online courses on Udemy or Skillshare. Create once, sell forever.' },
+        { t: 'AI Tool Reviews', d: 'Start an AI tool review blog or YouTube channel using affiliate marketing. Top tools pay $50-$200 per referral.' },
+        { t: 'AI Art Commissions', d: 'Use Midjourney or Stable Diffusion to create custom art, avatars, and illustrations. Charge $10-$500 per piece.' },
+        { t: 'AI Prompt Packs', d: 'Sell high-quality prompt templates as digital products. Good prompt packs sell for $5-$50 each.' },
+        { t: 'AI Translation Services', d: 'Use AI for initial translation with human polish. 5x faster than traditional translation, earning $50-$150/hour.' },
+        { t: 'AI Data Analysis', d: 'Help small businesses analyze sales data and customer insights using AI. Charge $200-$2,000 per project.' },
       ];
       const selected = methods.sort(() => Math.random() - 0.5).slice(0, 5);
       return [
-        `2026年，AI不再是概念，而是普通人赚钱的利器。本文将分享经过真实验证的AI赚钱方法，不需要技术背景，拿来就能用。`,
-        `## AI赚钱的核心逻辑`,
-        `AI的核心价值是降低成本和提升效率。赚钱的思路就是：用AI降低你的成本，或者帮别人降低成本，然后收取费用。`,
-        `## 真实方法`,
+        `AI isn't just a technology — it's a money-making opportunity. This guide covers real, proven methods to generate income using AI tools in 2026.`,
+        `## The Core Logic of AI Monetization`,
+        `AI's core value is reducing costs and improving efficiency. Make money by using AI to lower your costs, or by helping others do the same.`,
+        `## Proven Methods`,
         ...selected.flatMap(t => [`### ${t.t}`, t.d]),
-        `## 新手建议`,
-        `不要急着做选择，先试水1-2个方向。比如先用AI做内容创作接1-2单，再用赚到的钱去尝试自动化服务方向。`,
-        `## 总结`,
-        `AI赚钱的门槛比大多数人想象的要低。关键是先动手，不要等"准备好"。从一个小单开始，逐步扩大。`,
-        `<p style="color:#999;font-size:0.9em;margin-top:30px">* 本文由AI辅助生成，仅供参考和学习使用</p>`
+        `## Getting Started`,
+        `Don't overthink it. Pick one method, start with a small project, and iterate. The key is taking action, not waiting for the perfect plan.`,
+        `## Conclusion`,
+        `The barrier to making money with AI is lower than most people think. Start small, learn fast, and scale what works.`,
+        `<p style="color:#999;font-size:0.9em;margin-top:30px">* This article was AI-assisted and is for reference only.</p>`
       ];
     }
   },
   {
     category: 'Claude',
-    title: (n) => `Claude 4深度评测：比ChatGPT强在哪？`,
-    keywords: () => 'Claude 4,AI评测,ChatGPT对比,Anthropic',
-    content: () => {
-      return [
-        `Anthropic在2026年推出的Claude 4引起了广泛关注。本文将从多个角度深度评测Claude 4，并与ChatGPT进行对比。`,
-        `## Claude 4的核心升级`,
-        `- **更长上下文**：支持200K tokens，可以一次处理一本书\n- **更强的推理能力**：在数学、编程、逻辑推理方面大幅提升\n- **多模态**：支持图片、文档分析\n- **Agent能力**：可以自主完成复杂任务`,
-        `## Claude 4 vs ChatGPT 对比`,
-        `| 维度 | Claude 4 | ChatGPT (GPT-4) |\n|------|---------|----------------|\n| 上下文长度 | 200K | 128K |\n| 编程能力 | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ |\n| 写作质量 | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ |\n| 推理能力 | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ |\n| 多模态 | 图文分析 | 图文+语音 |\n| 价格 | $20/月 | $20/月 |`,
-        `## Claude 4的独特优势`,
-        `### 编程能力强`,
-        `在编程任务中，Claude 4表现出色。特别是在理解复杂代码库、重构代码、编写测试方面，很多开发者反馈Claude 4比ChatGPT更可靠。`,
-        `### 写作更自然`,
-        `Claude 4的写作风格更加自然流畅，特别是在中文写作方面，比ChatGPT更地道。长文章的tone一致性也更好。`,
-        `### 安全性更高`,
-        `Anthropic一直将AI安全作为核心。Claude 4在有害内容过滤、偏见控制方面做得更好。`,
-        `## Claude 4的不足`,
-        `- 插件生态不如ChatGPT丰富\n- 实时信息检索能力较弱\n- 语音功能尚未支持`,
-        `## 总结`,
-        `Claude 4是当前综合实力最强的AI模型之一。如果你主要用AI做编程、写作、分析，Claude 4可能是比ChatGPT更好的选择。`,
-        `<p style="color:#999;font-size:0.9em;margin-top:30px">* 本文由AI辅助生成，仅供参考和学习使用</p>`
-      ];
-    }
+    title: (n) => `Claude 4 Review: Is It Better Than ChatGPT?`,
+    keywords: () => 'Claude 4, AI review, ChatGPT comparison, Anthropic',
+    content: () => [
+        `Anthropic's Claude 4 has generated significant buzz in 2026. This in-depth review compares Claude 4 with ChatGPT across multiple dimensions.`,
+        `## Claude 4 Key Upgrades`,
+        `- **Longer Context**: 200K tokens — can process an entire book\n- **Better Reasoning**: Significantly improved math, coding, and logic\n- **Multimodal**: Supports image and document analysis\n- **Agent Capabilities**: Can autonomously complete complex tasks`,
+        `## Claude 4 vs ChatGPT`,
+        `| Feature | Claude 4 | ChatGPT (GPT-4) |\n|---------|---------|----------------|\n| Context Length | 200K | 128K |\n| Coding | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ |\n| Writing Quality | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ |\n| Reasoning | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ |\n| Multimodal | Images + Docs | Image + Voice |\n| Price | $20/month | $20/month |`,
+        `## Claude 4 Strengths`,
+        `### Superior Coding`,
+        `Claude 4 excels at coding tasks, particularly understanding complex codebases, refactoring, and writing tests. Many developers report Claude 4 is more reliable than ChatGPT.`,
+        `### Better Writing`,
+        `Claude 4 produces more natural, nuanced writing, especially in long-form content. Its tone consistency is superior.`,
+        `### Safety First`,
+        `Anthropic prioritizes AI safety. Claude 4 has better guardrails against harmful content and bias.`,
+        `## Claude 4 Weaknesses`,
+        `- Plugin ecosystem is less mature than ChatGPT\n- Real-time information retrieval is weaker\n- Voice features not yet available`,
+        `## Conclusion`,
+        `Claude 4 is arguably the strongest all-round AI model in 2026. For coding, writing, and analysis, it may be a better choice than ChatGPT.`,
+        `<p style="color:#999;font-size:0.9em;margin-top:30px">* This article was AI-assisted and is for reference only.</p>`
+      ]
   },
 ];
 
@@ -196,36 +191,36 @@ function generateArticle(index) {
   const template = articleTemplates[index % articleTemplates.length];
   const n = 5 + Math.floor(Math.random() * 10);
   const id = template.title(n).toLowerCase()
-    .replace(/[：:]/g, '-').replace(/[？?，,。.!！\s]+/g, '-').replace(/[^\w\u4e00-\u9fff-]/g, '').slice(0, 60);
-
+    .replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').slice(0, 60);
   return {
     id: id + '-' + Date.now().toString(36),
     title: template.title(n),
-    summary: template.summary ? template.summary() : template.content()[0].slice(0, 100) + '...',
+    summary: template.content()[0].slice(0, 120) + '...',
     keywords: template.keywords(),
     category: template.category,
     content: template.content(),
-    relatedTools: [],
     date: new Date().toISOString().split('T')[0]
   };
 }
 
 function generateBatch(count) {
-  const articles = JSON.parse(fs.readFileSync(articlesPath, 'utf-8'));
+  let articles = [];
+  try { articles = JSON.parse(fs.readFileSync(articlesPath, 'utf-8')); } catch(e) { articles = []; }
   for (let i = 0; i < count; i++) {
     const article = generateArticle(articles.length + i);
     articles.push(article);
   }
   fs.writeFileSync(articlesPath, JSON.stringify(articles, null, 2), 'utf-8');
-  console.log(`已生成 ${count} 篇文章，共 ${articles.length} 篇`);
+  console.log(`Generated ${count} articles, total: ${articles.length}`);
 }
 
 function generateDaily() {
-  const articles = JSON.parse(fs.readFileSync(articlesPath, 'utf-8'));
+  let articles = [];
+  try { articles = JSON.parse(fs.readFileSync(articlesPath, 'utf-8')); } catch(e) { articles = []; }
   const article = generateArticle(articles.length);
   articles.push(article);
   fs.writeFileSync(articlesPath, JSON.stringify(articles, null, 2), 'utf-8');
-  console.log(`[${article.date}] 已发布: ${article.title}`);
+  console.log(`[${article.date}] Published: ${article.title}`);
 }
 
 if (require.main === module) {

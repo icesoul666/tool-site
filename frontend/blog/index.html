@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>全部文章 - AI工具教程</title>
-<meta name="description" content="AI工具教程：ChatGPT、Claude、Midjourney、AI编程等最新教程和评测">
+<title>All Articles - AI Tools Tutorial</title>
+<meta name="description" content="AI tools tutorials: ChatGPT, Claude, Midjourney, AI coding, and more. Updated daily.">
 <link rel="stylesheet" href="../css/style.css">
 <style>
 header { padding: 20px 0; }
@@ -25,18 +25,18 @@ header h1 { font-size: 1.5em; }
 <body>
 <header>
   <div class="container">
-    <h1><a href="../index.html" style="color:white;text-decoration:none">AI工具教程</a></h1>
+    <h1><a href="../index.html" style="color:white;text-decoration:none">AI Tools Tutorial</a></h1>
   </div>
 </header>
 <div class="container">
-  <h2 style="margin-bottom:5px" id="pageTitle">全部文章</h2>
-  <p style="color:#999;margin-bottom:20px" id="totalCount">加载中...</p>
+  <h2 style="margin-bottom:5px" id="pageTitle">All Articles</h2>
+  <p style="color:#999;margin-bottom:20px" id="totalCount">Loading...</p>
   <div class="blog-list" id="articleList">
-    <p style="text-align:center;padding:40px;color:#999">加载中...</p>
+    <p style="text-align:center;padding:40px;color:#999">Loading...</p>
   </div>
   <div class="page-nav" id="pageNav"></div>
 </div>
-<footer><div class="container"><p>AI工具教程 &copy; 2026</p></div></footer>
+<footer><div class="container"><p>AI Tools Tutorial &copy; 2026</p></div></footer>
 <script>
 const API = window.location.origin + '/api';
 const params = new URLSearchParams(location.search);
@@ -50,8 +50,8 @@ async function loadArticles(p = 1) {
   const r = await fetch(url);
   const data = await r.json();
   totalPages = data.totalPages;
-  document.getElementById('totalCount').textContent = cat ? `分类: ${cat} · 共 ${data.total} 篇` : `共 ${data.total} 篇文章`;
-  document.getElementById('pageTitle').textContent = cat ? cat + ' 相关文章' : '全部文章';
+    document.getElementById('totalCount').textContent = cat ? `Category: ${cat} · ${data.total} articles` : `${data.total} articles total`;
+  document.getElementById('pageTitle').textContent = cat ? 'Articles: ' + cat : 'All Articles';
   document.title = (cat ? cat + ' - ' : '') + 'AI工具教程';
   document.getElementById('articleList').innerHTML = data.articles.map(a => `
     <div class="blog-card" onclick="location.href='article.html?id=${a.id}'">
@@ -60,16 +60,16 @@ async function loadArticles(p = 1) {
       <p>${(a.summary || a.content[0] || '').slice(0, 120)}...</p>
       <div class="meta">${a.date}</div>
     </div>
-  `).join('') || '<p style="text-align:center;padding:40px;color:#999">暂无文章</p>';
+  `).join('') || '<p style="text-align:center;padding:40px;color:#999">No articles yet</p>';
   renderPagination();
 }
 
 function renderPagination() {
   if (totalPages <= 1) { document.getElementById('pageNav').innerHTML = ''; return; }
   let html = '';
-  if (page > 1) html += `<button onclick="loadArticles(${page - 1})">上一页</button>`;
+  if (page > 1) html += `<button onclick="loadArticles(${page - 1})">Previous</button>`;
   html += `<span style="margin:0 15px;color:#999">${page} / ${totalPages}</span>`;
-  if (page < totalPages) html += `<button onclick="loadArticles(${page + 1})">下一页</button>`;
+  if (page < totalPages) html += `<button onclick="loadArticles(${page + 1})">Next</button>`;
   document.getElementById('pageNav').innerHTML = html;
 }
 loadArticles(1);

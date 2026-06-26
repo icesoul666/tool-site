@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>分类 - AI工具教程</title>
+<title>Category - AI Tools Tutorial</title>
 <link rel="stylesheet" href="css/style.css">
 <style>
 .cat-header { text-align: center; padding: 30px 0; }
@@ -17,31 +17,30 @@ header h1 { font-size: 1.5em; }
 <body>
 <header>
   <div class="container">
-    <h1><a href="index.html" style="color:white;text-decoration:none">AI工具教程</a></h1>
+    <h1><a href="index.html" style="color:white;text-decoration:none">AI Tools Tutorial</a></h1>
   </div>
 </header>
 <div class="container">
   <div class="cat-header" id="catHeader"></div>
-  <div class="blog-list" id="articleList"><p style="text-align:center;padding:40px;color:#999">加载中...</p></div>
+  <div class="blog-list" id="articleList"><p style="text-align:center;padding:40px;color:#999">Loading...</p></div>
 </div>
-<footer><div class="container"><p>AI工具教程 &copy; 2026</p></div></footer>
+<footer><div class="container"><p>AI Tools Tutorial &copy; 2026</p></div></footer>
 <script>
 const API = window.location.origin + '/api';
 const params = new URLSearchParams(location.search);
 const cat = params.get('cat');
-
 async function load() {
   const r = await fetch(API + '/articles?category=' + encodeURIComponent(cat) + '&limit=100');
   const data = await r.json();
-  document.title = cat + ' - AI工具教程';
-  document.getElementById('catHeader').innerHTML = `<h1>${cat}</h1><p>共 ${data.total} 篇文章</p>`;
+  document.title = cat + ' - AI Tools Tutorial';
+  document.getElementById('catHeader').innerHTML = `<h1>${cat}</h1><p>${data.total} articles</p>`;
   document.getElementById('articleList').innerHTML = data.articles.map(a => `
     <div class="blog-card" onclick="location.href='blog/article.html?id=${a.id}'">
       <div class="meta">${a.date} · ${a.category}</div>
       <h3>${a.title}</h3>
       <p>${(a.summary || a.content[0] || '').slice(0, 120)}...</p>
     </div>
-  `).join('') || '<p style="text-align:center;padding:40px;color:#999">该分类暂无文章</p>';
+  `).join('') || '<p style="text-align:center;padding:40px;color:#999">No articles in this category</p>';
 }
 load();
 </script>
