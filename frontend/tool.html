@@ -144,29 +144,32 @@ async function loadTool() {
   }
 }
 
-async function purchase() {
-  const btn = document.querySelector('.pay-wall .btn');
-  btn.textContent = '处理中...';
-  btn.disabled = true;
-  try {
-    const r = await fetch(API + '/create-order', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ toolId })
-    });
-    const data = await r.json();
-    if (data.url) {
-      location.href = data.url;
-    } else {
-      alert('演示模式：订单已创建，订单号: ' + data.orderId + '\n在真实环境中将跳转到支付页面');
-      sessionStorage.setItem('order_' + data.orderId, toolId);
-      location.href = 'pay-success.html?order=' + data.orderId + '&tool=' + toolId;
-    }
-  } catch(e) {
-    alert('创建订单失败，请重试');
-    btn.textContent = '立即购买 - ¥' + document.querySelector('.price').textContent.replace('¥', '').replace(' 永久使用', '');
-    btn.disabled = false;
-  }
+const PAYPAL_LINK = 'https://paypal.me/icesoul66';
+
+function purchase() {
+  const priceEl = document.querySelector('.price');
+  const price = priceEl ? priceEl.textContent.replace('¥', '').replace(' 永久使用', '').trim() : '5';
+  const orderId = Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+  sessionStorage.setItem('order_' + orderId, toolId);
+  sessionStorage.setItem('order_paid_' + orderId, 'pending');
+  const paypalUrl = PAYPAL_LINK + '/' + price + '?text=' + encodeURIComponent('Tool: ' + toolId + ' Order: ' + orderId);
+  window.open(paypalUrl, '_blank');
+  document.getElementById('payWall').innerHTML = `
+    <div style="text-align:center;padding:20px">
+      <div style="font-size:3em;margin-bottom:15px">🔄</div>
+      <h2>等待付款</h2>
+      <p style="color:#666;margin:15px 0">已打开 PayPal 付款页面</p>
+      <p style="color:#999;font-size:0.9em">付款完成后点击下方按钮</p>
+      <button class="btn btn-success" onclick="verifyPayment('${orderId}')" style="margin-top:15px">我已付款，解锁工具</button>
+      <p style="color:#999;font-size:0.85em;margin-top:10px">如有问题，联系站长手动处理</p>
+    </div>
+  `;
+}
+function verifyPayment(orderId) {
+  sessionStorage.setItem('order_paid_' + orderId, 'paid');
+  document.getElementById('payWall').style.display = 'none';
+  document.getElementById('toolContent').style.display = 'block';
+  renderTool();
 }
 
 function renderTool() {
