@@ -39,6 +39,18 @@ app.get('/api/featured', (req, res) => {
   res.json({ articles: sorted });
 });
 
+app.get('/api/gen', (req, res) => {
+  const count = parseInt(req.query.count) || 2;
+  try {
+    const gen = require('./gen/generator');
+    gen.generateBatch(count);
+    const newArticles = require('./articles/articles.json');
+    res.json({ generated: count, total: newArticles.length });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
 app.post('/api/gen', (req, res) => {
   const { count = 1 } = req.body;
   try {
