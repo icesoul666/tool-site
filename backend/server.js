@@ -52,7 +52,7 @@ app.post('/api/gen', (req, res) => {
 });
 
 app.get('/sitemap.xml', (req, res) => {
-  const baseUrl = `${req.protocol}://${req.get('host')}`;
+  const baseUrl = `https://${req.get('host')}`;
   const categories = [...new Set(articles.map(a => a.category))];
   const urls = [
     { loc: baseUrl + '/', priority: '1.0' },
