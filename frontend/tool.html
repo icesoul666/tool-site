@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>在线工具</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1><a href="index.html" style="color:white;text-decoration:none">在线工具箱</a></h1>
+  </div>
+</header>
+<div class="container">
+  <div class="tool-container" id="toolContainer">
+    <div style="text-align:center;padding:40px">加载中...</div>
+  </div>
+</div>
+<footer><div class="container"><p>在线工具箱 &copy; 2026</p></div></footer>
+<script>
+const API = window.location.origin + '/api';
+const params = new URLSearchParams(location.search);
+const toolId = params.get('id');
+
+const toolHandlers = {
+  'image-compressor': {
+    render: () => `
+      <h2>图片压缩</h2>
+      <p style="color:#666;margin-bottom:15px">压缩PNG/JPG图片，减少文件大小</p>
+      <input type="file" id="fileInput" accept="image/png,image/jpeg" onchange="handleImageCompress(this)">
+      <div id="result" class="result" style="display:none"></div>
+    `,
+    handle: async (file) => {
+      const img = await createImageBitmap(file);
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width; canvas.height = img.height;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+      const quality = 0.7;
+      const blob = await new Promise(r => canvas.toBlob(r, 'image/jpeg', quality));
+      return { blob, name: file.name.replace(/\.[^.]+$/, '.jpg'), size: blob.size };
+    }
+  },
+  'qr-generator': {
+    render: () => `
+      <h2>二维码生成器</h2>
+      <p style="color:#666;margin-bottom:15px">输入文本或网址生成二维码</p>
+      <input type="text" id="qrText" placeholder="输入网址或文本..." style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;margin-bottom:10px">
+      <button class="btn btn-primary" onclick="generateQR()">生成二维码</button>
+      <div id="result" class="result" style="display:none"></div>
+    `,
+    generate: () => {
+      const text = document.getElementById('qrText').value.trim();
+      if (!text) return alert('请输入内容');
+      const url = 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=' + encodeURIComponent(text);
+      document.getElementById('result').innerHTML = `<img src="${url}" alt="二维码" style="max-width:300px"><br><a href="${url}" download="qrcode.png" class="btn btn-success" style="margin-top:10px">下载</a>`;
+      document.getElementById('result').style.display = 'block';
+    }
+  },
+  'json-formatter': {
+    render: () => `
+      <h2>JSON格式化</h2>
+      <p style="color:#666;margin-bottom:15px">格式化、校验和压缩JSON数据</p>
+      <textarea id="jsonInput" placeholder="粘贴JSON数据..."></textarea>
+      <button class="btn btn-primary" onclick="formatJSON()">格式化</button>
+      <button class="btn" style="background:#95a5a6;color:white;margin-left:10px" onclick="compressJSON()">压缩</button>
+      <div id="result" class="result" style="display:none"></div>
+    `,
+    format: () => {
+      try {
+        const input = document.getElementById('jsonInput').value;
+        const parsed = JSON.parse(input);
+        document.getElementById('result').innerHTML = `<pre style="background:#f8f9fa;padding:15px;border-radius:8px;overflow:auto">${highlightJSON(JSON.stringify(parsed, null, 2))}</pre><button class="btn btn-success" onclick="copyResult()" style="margin-top:10px">复制</button>`;
+        document.getElementById('result').style.display = 'block';
+      } catch(e) {
+        alert('JSON格式错误: ' + e.message);
+      }
+    },
+    compress: () => {
+      try {
+        const input = document.getElementById('jsonInput').value;
+        const parsed = JSON.parse(input);
+        document.getElementById('result').innerHTML = `<pre style="background:#f8f9fa;padding:15px;border-radius:8px;overflow:auto">${JSON.stringify(parsed)}</pre><button class="btn btn-success" onclick="copyResult()" style="margin-top:10px">复制</button>`;
+        document.getElementById('result').style.display = 'block';
+      } catch(e) {
+        alert('JSON格式错误: ' + e.message);
+      }
+    }
+  },
+  'text-counter': {
+    render: () => `
+      <h2>字数统计</h2>
+      <p style="color:#666;margin-bottom:15px">统计文字的字数、字符数、行数</p>
+      <textarea id="textInput" placeholder="粘贴或输入文字..." oninput="countText()"></textarea>
+      <div id="result" class="result">
+        <p>字数: <strong id="charCount">0</strong></p>
+        <p>字符数(含空格): <strong id="charTotal">0</strong></p>
+        <p>行数: <strong id="lineCount">0</strong></p>
+        <p>段落数: <strong id="paraCount">0</strong></p>
+      </div>
+    `,
+    count: () => {
+      const text = document.getElementById('textInput').value;
+      document.getElementById('charCount').textContent = text.replace(/\s/g, '').length;
+      document.getElementById('charTotal').textContent = text.length;
+      document.getElementById('lineCount').textContent = text ? text.split('\n').length : 0;
+      document.getElementById('paraCount').textContent = text ? text.split(/\n\s*\n/).filter(p => p.trim()).length : 0;
+    }
+  }
+};
+
+async function loadTool() {
+  try {
+    const r = await fetch(API + '/tool/' + toolId);
+    const data = await r.json();
+    const tool = data.tool;
+    document.title = tool.name + ' - 在线工具箱';
+    const container = document.getElementById('toolContainer');
+
+    if (tool.pro) {
+      container.innerHTML = `
+        <div class="pay-wall" id="payWall">
+          <div class="icon" style="font-size:3em">🔒</div>
+          <h2>${tool.name}</h2>
+          <p>${tool.desc}</p>
+          <div class="price">¥${tool.price} <small>永久使用</small></div>
+          <ul class="feature-list">
+            <li>无限制使用</li>
+            <li>高质量输出</li>
+            <li>永久有效</li>
+          </ul>
+          <button class="btn btn-success btn-block" onclick="purchase()" style="max-width:300px;margin:20px auto">立即购买 - ¥${tool.price}</button>
+          <p style="color:#999;font-size:0.85em">支付后立即解锁，无需注册</p>
+        </div>
+        <div id="toolContent" style="display:none"></div>
+      `;
+    } else {
+      container.innerHTML = `<div id="toolContent"></div>`;
+      renderTool();
+    }
+  } catch(e) {
+    document.getElementById('toolContainer').innerHTML = '<p style="text-align:center;padding:40px">工具加载失败</p>';
+  }
+}
+
+async function purchase() {
+  const btn = document.querySelector('.pay-wall .btn');
+  btn.textContent = '处理中...';
+  btn.disabled = true;
+  try {
+    const r = await fetch(API + '/create-order', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ toolId })
+    });
+    const data = await r.json();
+    if (data.url) {
+      location.href = data.url;
+    } else {
+      alert('演示模式：订单已创建，订单号: ' + data.orderId + '\n在真实环境中将跳转到支付页面');
+      sessionStorage.setItem('order_' + data.orderId, toolId);
+      location.href = 'pay-success.html?order=' + data.orderId + '&tool=' + toolId;
+    }
+  } catch(e) {
+    alert('创建订单失败，请重试');
+    btn.textContent = '立即购买 - ¥' + document.querySelector('.price').textContent.replace('¥', '').replace(' 永久使用', '');
+    btn.disabled = false;
+  }
+}
+
+function renderTool() {
+  const handler = toolHandlers[toolId];
+  if (!handler) {
+    document.getElementById('toolContent').innerHTML = '<p style="text-align:center;padding:40px">工具开发中...</p>';
+    return;
+  }
+  document.getElementById('toolContent').innerHTML = handler.render();
+}
+
+function handleImageCompress(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const handler = toolHandlers['image-compressor'];
+  handler.handle(file).then(result => {
+    const sizeKB = (file.size / 1024).toFixed(1);
+    const newSizeKB = (result.size / 1024).toFixed(1);
+    const ratio = ((1 - result.size / file.size) * 100).toFixed(1);
+    const url = URL.createObjectURL(result.blob);
+    document.getElementById('result').innerHTML = `
+      <p>原始大小: ${sizeKB} KB → 压缩后: ${newSizeKB} KB (减小${ratio}%)</p>
+      <img src="${url}" style="max-width:100%;max-height:300px;margin:10px 0"><br>
+      <a href="${url}" download="${result.name}" class="btn btn-success">下载</a>
+    `;
+    document.getElementById('result').style.display = 'block';
+  });
+}
+
+function generateQR() { toolHandlers['qr-generator'].generate(); }
+function formatJSON() { toolHandlers['json-formatter'].format(); }
+function compressJSON() { toolHandlers['json-formatter'].compress(); }
+function countText() { toolHandlers['text-counter'].count(); }
+function copyResult() {
+  const text = document.querySelector('#result pre').textContent;
+  navigator.clipboard.writeText(text).then(() => alert('已复制'));
+}
+
+function highlightJSON(json) {
+  return json.replace(/("(?:\\.|[^"\\])*")\s*:/g, '<span style="color:#881391">$1</span>:')
+    .replace(/: ("(?:\\.|[^"\\])*")/g, ': <span style="color:#1a7fc9">$1</span>')
+    .replace(/: (true|false)/g, ': <span style="color:#e74c3c">$1</span>')
+    .replace(/: (\d+\.?\d*)/g, ': <span style="color:#e67e22">$1</span>');
+}
+
+loadTool();
+</script>
+</body>
+</html>

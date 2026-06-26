@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>在线工具箱 - 免费实用的在线工具</title>
+<meta name="description" content="免费在线工具集：图片压缩、格式转换、二维码生成、JSON格式化、PDF处理等">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1>在线工具箱</h1>
+    <p>免费实用的在线工具，无需下载安装</p>
+  </div>
+</header>
+<div class="container">
+  <div class="tool-grid" id="toolGrid"></div>
+</div>
+<footer>
+  <div class="container">
+    <p>在线工具箱 &copy; 2026 - 简单实用的在线工具</p>
+  </div>
+</footer>
+<script>
+const API = window.location.origin + '/api';
+
+async function loadTools() {
+  try {
+    const r = await fetch(API + '/tools');
+    const data = await r.json();
+    const grid = document.getElementById('toolGrid');
+    grid.innerHTML = data.tools.map(t => `
+      <div class="tool-card" onclick="location.href='tool.html?id=${t.id}'">
+        <span class="badge ${t.pro ? '' : 'free'}">${t.pro ? 'PRO ¥' + t.price : '免费'}</span>
+        <div class="icon">${getIcon(t.id)}</div>
+        <h3>${t.name}</h3>
+        <p>${t.desc}</p>
+      </div>
+    `).join('');
+  } catch(e) {
+    document.getElementById('toolGrid').innerHTML = '<p style="text-align:center;padding:40px">加载失败，请刷新重试</p>';
+  }
+}
+function getIcon(id) {
+  const icons = {
+    'image-compressor': '🖼️', 'image-converter': '🔄', 'qr-generator': '📱',
+    'json-formatter': '📋', 'text-counter': '📝', 'pdf-merge': '📄',
+    'pdf-split': '✂️', 'bulk-resize': '📐', 'watermark': '💧', 'seo-analyzer': '🔍'
+  };
+  return icons[id] || '🔧';
+}
+loadTools();
+</script>
+</body>
+</html>

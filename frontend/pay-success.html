@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>支付成功 - 在线工具箱</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1><a href="index.html" style="color:white;text-decoration:none">在线工具箱</a></h1>
+  </div>
+</header>
+<div class="container">
+  <div class="payment-status">
+    <div class="icon">✅</div>
+    <h2>支付成功！</h2>
+    <p style="color:#666;margin:15px 0">感谢购买，工具已解锁</p>
+    <a href="tool.html?id=__TOOL_ID__" class="btn btn-success" id="useBtn">开始使用</a>
+    <br><br>
+    <a href="index.html" style="color:#667eea">返回首页</a>
+  </div>
+</div>
+<script>
+const params = new URLSearchParams(location.search);
+const toolId = params.get('tool');
+if (toolId) {
+  document.getElementById('useBtn').href = 'tool.html?id=' + toolId + '&paid=true';
+}
+</script>
+</body>
+</html>

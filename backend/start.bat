@@ -1,0 +1,6 @@
+@echo off
+echo 安装依赖...
+call npm install
+echo 启动工具箱...
+node server.js
+pause
