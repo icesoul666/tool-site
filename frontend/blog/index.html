@@ -52,7 +52,7 @@ async function loadArticles(p = 1) {
   totalPages = data.totalPages;
     document.getElementById('totalCount').textContent = cat ? `Category: ${cat} · ${data.total} articles` : `${data.total} articles total`;
   document.getElementById('pageTitle').textContent = cat ? 'Articles: ' + cat : 'All Articles';
-  document.title = (cat ? cat + ' - ' : '') + 'AI工具教程';
+  document.title = (cat ? cat + ' - ' : '') + 'AI Tools Tutorial';
   document.getElementById('articleList').innerHTML = data.articles.map(a => `
     <div class="blog-card" onclick="location.href='article.html?id=${a.id}'">
       <div class="cat-tag">${a.category}</div>

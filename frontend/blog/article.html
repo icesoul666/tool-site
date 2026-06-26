@@ -39,7 +39,7 @@ header h1 { font-size: 1.5em; }
 <div class="container">
   <div class="article-wrap">
     <div class="article-body" id="articleContent">
-      <p style="text-align:center;padding:40px;color:#999">加载中...</p>
+      <p style="text-align:center;padding:40px;color:#999">Loading...</p>
     </div>
   </div>
 </div>
@@ -75,7 +75,7 @@ async function loadArticle() {
     const r = await fetch(API + '/articles/' + articleId);
     const data = await r.json();
     const a = data.article;
-    document.title = a.title + ' - AI工具教程';
+    document.title = a.title + ' - AI Tools Tutorial';
     const content = document.getElementById('articleContent');
     let html = `
       <h1>${a.title}</h1>
@@ -85,7 +85,7 @@ async function loadArticle() {
     const related = await fetch(API + '/articles?category=' + encodeURIComponent(a.category) + '&limit=4').then(r => r.json());
     const others = related.articles.filter(x => x.id !== a.id).slice(0, 3);
     if (others.length) {
-      html += `<div class="related-section"><h3>相关文章</h3>${others.map(x => `<a href="article.html?id=${x.id}">→ ${x.title}</a><br>`).join('')}</div>`;
+      html += `<div class="related-section"><h3>Related Articles</h3>${others.map(x => `<a href="article.html?id=${x.id}">→ ${x.title}</a><br>`).join('')}</div>`;
     }
     content.innerHTML = html + `
       <div style="margin:30px 0;text-align:center;min-height:90px">
@@ -97,7 +97,7 @@ async function loadArticle() {
         <a href="https://ko-fi.com/icesoul66" target="_blank" style="display:inline-block;padding:10px 30px;background:#ff5e5b;color:white;border-radius:8px;text-decoration:none;font-weight:600;font-size:1em">☕ Buy me a coffee</a>
       </div>`;
   } catch(e) {
-    document.getElementById('articleContent').innerHTML = '<p style="text-align:center;padding:40px">文章加载失败</p>';
+    document.getElementById('articleContent').innerHTML = '<p style="text-align:center;padding:40px">Failed to load article</p>';
   }
 }
 if (articleId) loadArticle();
