@@ -35,3 +35,6 @@ header p { opacity: 0.9; font-size: 1.1em; }
 .payment-status .icon { font-size: 4em; margin-bottom: 20px; }
 .payment-status h2 { margin-bottom: 10px; }
 footer { text-align: center; padding: 30px; color: #999; font-size: 0.85em; margin-top: 40px; }
+.donate-float { position: fixed; bottom: 30px; right: 30px; z-index: 999; }
+.donate-float a { display: flex; align-items: center; gap: 8px; background: #0070ba; color: white; padding: 12px 22px; border-radius: 50px; text-decoration: none; font-weight: 600; box-shadow: 0 4px 15px rgba(0,112,186,0.3); transition: transform 0.2s; }
+.donate-float a:hover { transform: scale(1.05); }

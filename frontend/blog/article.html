@@ -44,6 +44,7 @@ header h1 { font-size: 1.5em; }
   </div>
 </div>
 <footer><div class="container"><p>AI工具教程 &copy; 2026</p></div></footer>
+<div class="donate-float"><a href="https://paypal.me/icesoul66" target="_blank">☕ 请我喝咖啡</a></div>
 <script>
 const API = window.location.origin + '/api';
 const params = new URLSearchParams(location.search);
@@ -86,7 +87,11 @@ async function loadArticle() {
     if (others.length) {
       html += `<div class="related-section"><h3>相关文章</h3>${others.map(x => `<a href="article.html?id=${x.id}">→ ${x.title}</a><br>`).join('')}</div>`;
     }
-    content.innerHTML = html;
+    content.innerHTML = html + `
+      <div style="margin-top:40px;padding:25px;background:#f8f9fa;border-radius:12px;text-align:center;border:1px solid #eee">
+        <p style="color:#666;margin-bottom:12px;font-size:0.95em">如果这篇文章对你有帮助，欢迎请我喝杯咖啡 ☕</p>
+        <a href="https://paypal.me/icesoul66" target="_blank" style="display:inline-block;padding:10px 30px;background:#0070ba;color:white;border-radius:8px;text-decoration:none;font-weight:600;font-size:1em">PayPal 打赏</a>
+      </div>`;
   } catch(e) {
     document.getElementById('articleContent').innerHTML = '<p style="text-align:center;padding:40px">文章加载失败</p>';
   }
