@@ -16,7 +16,7 @@
 .cat-header p { color: #999; }
 header { padding: 20px 0; }
 header h1 { font-size: 1.5em; }
-.blog-list { max-width: 800px; margin: 0 auto; }
+.blog-list { max-width: 800px; margin: 0 auto; padding: 5px 24px 24px; }
 .blog-card { background: white; border-radius: 12px; padding: 24px; margin-bottom: 18px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); cursor: pointer; transition: transform 0.2s; }
 .blog-card:hover { transform: translateY(-2px); }
 .blog-card .meta { color: #bbb; font-size: 0.8em; margin-bottom: 6px; }
@@ -31,8 +31,10 @@ header h1 { font-size: 1.5em; }
   </div>
 </header>
 <div class="container">
-  <div class="cat-header" id="catHeader"></div>
-  <div class="blog-list" id="articleList"><p style="text-align:center;padding:40px;color:#999">Loading...</p></div>
+  <div style="max-width:800px;margin:0 auto;background:white;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,0.06);overflow:hidden">
+    <div class="cat-header" id="catHeader"></div>
+    <div class="blog-list" id="articleList"><p style="text-align:center;padding:40px;color:#999">Loading...</p></div>
+  </div>
 </div>
 <footer><div class="container"><p>AI Tools Tutorial &copy; 2026</p></div></footer>
 <script>
