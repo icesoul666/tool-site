@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>All Articles - AI Tools Tutorial</title>
 <meta name="description" content="AI tools tutorials: ChatGPT, Claude, Midjourney, AI coding, and more. Updated daily.">
+<meta property="og:title" content="All Articles - AI Tools Tutorial">
+<meta property="og:description" content="AI tools tutorials: ChatGPT, Claude, Midjourney, AI coding, and more. Updated daily.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tool-site-p80e.onrender.com/blog/index.html">
+<link rel="canonical" href="https://tool-site-p80e.onrender.com/blog/index.html">
 <link rel="stylesheet" href="../css/style.css">
 <style>
 header { padding: 20px 0; }
@@ -53,12 +58,17 @@ async function loadArticles(p = 1) {
     document.getElementById('totalCount').textContent = cat ? `Category: ${cat} · ${data.total} articles` : `${data.total} articles total`;
   document.getElementById('pageTitle').textContent = cat ? 'Articles: ' + cat : 'All Articles';
   document.title = (cat ? cat + ' - ' : '') + 'AI Tools Tutorial';
+  document.title = (cat ? cat + ' - ' : '') + 'AI Tools Tutorial';
+  document.querySelector('meta[name="description"]').content = cat ? `Articles about ${cat} - AI Tools Tutorial` : 'Browse all AI tools tutorials, reviews, and guides.';
   document.getElementById('articleList').innerHTML = data.articles.map(a => `
-    <div class="blog-card" onclick="location.href='article.html?id=${a.id}'">
-      <div class="cat-tag">${a.category}</div>
-      <h2>${a.title}</h2>
-      <p>${(a.summary || a.content[0] || '').slice(0, 120)}...</p>
-      <div class="meta">${a.date}</div>
+    <div class="blog-card" onclick="location.href='article.html?id=${a.id}'" style="display:flex;gap:16px;align-items:flex-start">
+      ${a.image ? `<img src="${a.image}" alt="${a.title}" style="width:160px;height:100px;object-fit:cover;border-radius:8px;flex-shrink:0" loading="lazy">` : ''}
+      <div style="flex:1">
+        <div class="cat-tag">${a.category}</div>
+        <h2>${a.title}</h2>
+        <p>${(a.summary || a.content[0] || '').slice(0, 120)}...</p>
+        <div class="meta">${a.date}</div>
+      </div>
     </div>
   `).join('') || '<p style="text-align:center;padding:40px;color:#999">No articles yet</p>';
   renderPagination();

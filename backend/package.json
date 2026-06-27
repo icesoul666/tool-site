@@ -1,7 +1,7 @@
 {
   "name": "tool-site-backend",
   "version": "1.0.0",
-  "description": "在线工具箱后端API",
+  "description": "AI Tools Tutorial - backend API server",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

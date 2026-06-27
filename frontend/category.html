@@ -3,6 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Category page - AI Tools Tutorial">
+<meta property="og:title" content="Category - AI Tools Tutorial">
+<meta property="og:description" content="Browse AI tools tutorials by category">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://tool-site-p80e.onrender.com/category.html">
 <title>Category - AI Tools Tutorial</title>
 <link rel="stylesheet" href="css/style.css">
 <style>
@@ -12,6 +17,11 @@
 header { padding: 20px 0; }
 header h1 { font-size: 1.5em; }
 .blog-list { max-width: 800px; margin: 0 auto; }
+.blog-card { background: white; border-radius: 12px; padding: 24px; margin-bottom: 18px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); cursor: pointer; transition: transform 0.2s; }
+.blog-card:hover { transform: translateY(-2px); }
+.blog-card .meta { color: #bbb; font-size: 0.8em; margin-bottom: 6px; }
+.blog-card h3 { font-size: 1.15em; margin-bottom: 8px; }
+.blog-card p { color: #888; font-size: 0.9em; }
 </style>
 </head>
 <body>
@@ -33,12 +43,19 @@ async function load() {
   const r = await fetch(API + '/articles?category=' + encodeURIComponent(cat) + '&limit=100');
   const data = await r.json();
   document.title = cat + ' - AI Tools Tutorial';
-  document.getElementById('catHeader').innerHTML = `<h1>${cat}</h1><p>${data.total} articles</p>`;
+  document.querySelector('meta[name="description"]').content = cat + ' articles - AI Tools Tutorial';
+  document.querySelector('meta[property="og:title"]').content = cat + ' - AI Tools Tutorial';
+  document.querySelector('meta[property="og:url"]').content = window.location.href;
+  document.querySelector('link[rel="canonical"]').href = window.location.href;
+  document.getElementById('catHeader').innerHTML = '<h1>' + cat + '</h1><p>' + data.total + ' articles</p>';
   document.getElementById('articleList').innerHTML = data.articles.map(a => `
-    <div class="blog-card" onclick="location.href='blog/article.html?id=${a.id}'">
-      <div class="meta">${a.date} · ${a.category}</div>
-      <h3>${a.title}</h3>
-      <p>${(a.summary || a.content[0] || '').slice(0, 120)}...</p>
+    <div class="blog-card" onclick="location.href='blog/article.html?id=${a.id}'" style="display:flex;gap:16px;align-items:flex-start">
+      ${a.image ? '<img src="' + a.image + '" alt="' + a.title + '" style="width:160px;height:100px;object-fit:cover;border-radius:8px;flex-shrink:0" loading="lazy">' : ''}
+      <div style="flex:1">
+        <div class="meta">${a.date} · ${a.category}</div>
+        <h3>${a.title}</h3>
+        <p>${(a.summary || a.content[0] || '').slice(0, 120)}...</p>
+      </div>
     </div>
   `).join('') || '<p style="text-align:center;padding:40px;color:#999">No articles in this category</p>';
 }
