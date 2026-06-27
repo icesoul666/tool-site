@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const fs = require('fs');
 
 const app = express();
 const PORT = process.env.PORT || 4567;
@@ -9,9 +10,18 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../frontend')));
 
-const articles = require('./articles/articles.json');
+const articlesPath = path.join(__dirname, 'articles', 'articles.json');
+
+function loadArticles() {
+  try {
+    return JSON.parse(fs.readFileSync(articlesPath, 'utf-8'));
+  } catch (e) {
+    return [];
+  }
+}
 
 app.get('/api/articles', (req, res) => {
+  const articles = loadArticles();
   const { category, page = 1, limit = 20 } = req.query;
   let filtered = articles;
   if (category) filtered = filtered.filter(a => a.category === category);
@@ -23,47 +33,53 @@ app.get('/api/articles', (req, res) => {
 });
 
 app.get('/api/articles/:id', (req, res) => {
+  const articles = loadArticles();
   const article = articles.find(a => a.id === req.params.id);
-  if (!article) return res.status(404).json({ error: '文章不存在' });
+  if (!article) return res.status(404).json({ error: 'Article not found' });
   res.json({ article });
 });
 
 app.get('/api/categories', (req, res) => {
+  const articles = loadArticles();
   const cats = [...new Set(articles.map(a => a.category))];
   const counts = cats.map(c => ({ category: c, count: articles.filter(a => a.category === c).length }));
   res.json({ categories: counts });
 });
 
 app.get('/api/featured', (req, res) => {
+  const articles = loadArticles();
   const sorted = [...articles].sort(() => Math.random() - 0.5).slice(0, 6);
   res.json({ articles: sorted });
 });
 
+function handleGen(count) {
+  const gen = require('./gen/generator');
+  gen.generateBatch(count);
+  return loadArticles().length;
+}
+
 app.get('/api/gen', (req, res) => {
-  const count = parseInt(req.query.count) || 2;
   try {
-    const gen = require('./gen/generator');
-    gen.generateBatch(count);
-    const newArticles = require('./articles/articles.json');
-    res.json({ generated: count, total: newArticles.length });
+    const count = parseInt(req.query.count) || 2;
+    const total = handleGen(count);
+    res.json({ generated: count, total });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
 });
 
 app.post('/api/gen', (req, res) => {
-  const { count = 1 } = req.body;
   try {
-    const gen = require('./gen/generator');
-    gen.generateBatch(count);
-    const newArticles = require('./articles/articles.json');
-    res.json({ generated: count, total: newArticles.length });
+    const count = req.body.count || 2;
+    const total = handleGen(count);
+    res.json({ generated: count, total });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
 });
 
 app.get('/sitemap.xml', (req, res) => {
+  const articles = loadArticles();
   const baseUrl = `https://${req.get('host')}`;
   const categories = [...new Set(articles.map(a => a.category))];
   const urls = [
@@ -83,9 +99,14 @@ app.get('/robots.txt', (req, res) => {
   res.set('Content-Type', 'text/plain');
   res.send(`User-agent: *
 Allow: /
-Sitemap: ${req.protocol}://${req.get('host')}/sitemap.xml`);
+Sitemap: https://${req.get('host')}/sitemap.xml`);
+});
+
+app.use((err, req, res, next) => {
+  console.error('Server error:', err.message);
+  res.status(500).json({ error: 'Internal server error' });
 });
 
 app.listen(PORT, () => {
-  console.log(`内容站已启动: http://localhost:${PORT}`);
+  console.log(`Server started on port ${PORT}`);
 });

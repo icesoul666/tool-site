@@ -188,18 +188,23 @@ const articleTemplates = [
   },
 ];
 
+let idCounter = Date.now();
+
 function generateArticle(index) {
   const template = articleTemplates[index % articleTemplates.length];
   const n = 5 + Math.floor(Math.random() * 10);
-  const id = template.title(n).toLowerCase()
+  const content = template.content();
+  const title = template.title(n);
+  const id = title.toLowerCase()
     .replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').slice(0, 60);
+  idCounter++;
   return {
-    id: id + '-' + Date.now().toString(36),
-    title: template.title(n),
-    summary: template.content()[0].slice(0, 120) + '...',
+    id: id + '-' + idCounter.toString(36),
+    title,
+    summary: content[0].slice(0, 120) + '...',
     keywords: template.keywords(),
     category: template.category,
-    content: template.content(),
+    content,
     date: new Date().toISOString().split('T')[0]
   };
 }

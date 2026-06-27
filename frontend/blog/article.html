@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -51,23 +51,34 @@ const params = new URLSearchParams(location.search);
 const articleId = params.get('id');
 
 function renderContent(content) {
-  return content.map(line => {
-    if (!line.trim()) return '';
-    if (line.startsWith('## ')) return `<h2>${line.slice(3)}</h2>`;
-    if (line.startsWith('### ')) return `<h3>${line.slice(4)}</h3>`;
-    if (line.startsWith('- ')) return `<li>${line.slice(2)}</li>`;
+  let html = '';
+  let inList = false, inTable = false;
+  for (const line of content) {
+    if (!line.trim()) { html += '\n'; inList = false; continue; }
+    if (line.startsWith('## ')) { html += `<h2>${escapeHtml(line.slice(3))}</h2>\n`; continue; }
+    if (line.startsWith('### ')) { html += `<h3>${escapeHtml(line.slice(4))}</h3>\n`; continue; }
+    if (line.startsWith('- ')) {
+      if (!inList) { html += '<ul>\n'; inList = true; }
+      html += `<li>${formatInline(line.slice(2))}</li>\n`;
+      continue;
+    }
     if (line.startsWith('| ')) {
-      if (line.includes('---') || line.includes('--')) return '';
-      return `<tr>${line.split('|').filter(c=>c.trim()).map(c=>`<td>${c.trim()}</td>`).join('')}</tr>`;
+      if (line.includes('---')) continue;
+      if (!inTable) { html += '<table>\n'; inTable = true; }
+      html += '<tr>' + line.split('|').filter(c => c.trim()).map(c => `<td>${formatInline(c.trim())}</td>`).join('') + '</tr>\n';
+      continue;
     }
-    if (line.startsWith('**')) {
-      const bold = line.match(/\*\*(.+?)\*\*/);
-      if (bold && line.trim() === '**' + bold[1] + '**') return `<h3>${bold[1]}</h3>`;
-    }
-    let html = line;
-    html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-    return `<p>${html}</p>`;
-  }).join('\n');
+    if (inList) { html += '</ul>\n'; inList = false; }
+    if (inTable) { html += '</table>\n'; inTable = false; }
+    html += `<p>${formatInline(line)}</p>\n`;
+  }
+  if (inList) html += '</ul>\n';
+  if (inTable) html += '</table>\n';
+  return html;
+}
+function escapeHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function formatInline(s) {
+  return escapeHtml(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
 }
 
 async function loadArticle() {
