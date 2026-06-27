@@ -24,6 +24,7 @@ const articleTemplates = [
       ];
       return titles[Math.floor(Math.random() * titles.length)];
     },
+    summary: () => 'Learn powerful ChatGPT prompt engineering techniques to get better AI responses. Covers role play, step-by-step, structured output, and more proven methods.',
     keywords: () => 'ChatGPT, prompts, AI tips, productivity, prompt engineering',
     content: () => {
       const tips = [
@@ -45,6 +46,8 @@ const articleTemplates = [
         ...selected.flatMap(t => [`### ${t.t}`, t.d]),
         `## Advanced: Combining Techniques`,
         `These techniques work even better when combined. For example: Role Play + Step-by-Step + Structured Output — have the AI assume a role, break down the problem, and deliver results in a table format.`,
+        `## Common Mistakes to Avoid`,
+        `- Using vague prompts like "write something about AI"\n- Not providing enough context or examples\n- Accepting the first answer without iteration\n- Forgetting to set format and tone expectations`,
         `## Ready to Master ChatGPT?`,
         `Start applying these techniques today. The more you practice, the better your results will be.`,
         `<p style="color:#999;font-size:0.9em;margin-top:30px">* This article was AI-assisted and is for reference only.</p>`
@@ -63,6 +66,7 @@ const articleTemplates = [
       ];
       return titles[Math.floor(Math.random() * titles.length)];
     },
+    summary: () => 'Complete Midjourney tutorial covering prompt structure, key parameters, style references, and image blending. Go from beginner to pro in AI art creation.',
     keywords: () => 'Midjourney, AI art, AI image generation, Midjourney tutorial',
     content: () => {
       const features = [
@@ -86,6 +90,8 @@ const articleTemplates = [
         ...selected.flatMap(t => [`### ${t.t}`, t.d]),
         `## Pro Tips`,
         `- Use "4K, highly detailed, photorealistic" keywords for better quality\n- Experiment with different style combinations\n- Use the Upscale feature for higher resolution\n- Leverage Seed values for style consistency`,
+        `## Common Beginner Mistakes`,
+        `- Overloading prompts with too many conflicting styles\n- Ignoring aspect ratio parameters\n- Not using seed values for consistency\n- Expecting perfect results on the first try`,
         `## Ready to Create?`,
         `Start with the free tier and experiment with different prompts. Practice is the fastest way to master AI art.`,
         `<p style="color:#999;font-size:0.9em;margin-top:30px">* This article was AI-assisted and is for reference only.</p>`
@@ -104,6 +110,7 @@ const articleTemplates = [
       ];
       return titles[Math.floor(Math.random() * titles.length)];
     },
+    summary: () => 'Discover the best free AI tools in 2026 including Claude 4, Google Gemini, Stable Diffusion 3, and more. Practical guide to AI-powered productivity.',
     keywords: () => 'AI tools, free AI tools, productivity, AI applications',
     content: () => {
       const tools = [
@@ -143,6 +150,7 @@ const articleTemplates = [
       ];
       return titles[Math.floor(Math.random() * titles.length)];
     },
+    summary: () => 'Detailed comparison of Cursor, GitHub Copilot, and Codeium AI coding assistants. Find the best tool for your development workflow and budget.',
     keywords: () => 'AI coding, Cursor, Copilot, Codeium, programming, code assistant',
     content: () => [
         `AI coding assistants are transforming software development. This in-depth comparison covers the three most popular tools across features, pricing, and real-world performance.`,
@@ -188,6 +196,7 @@ const articleTemplates = [
       ];
       return titles[Math.floor(Math.random() * titles.length)];
     },
+    summary: () => 'Proven methods to make money with AI in 2026 including automation agency, content creation, AI art commissions, and prompt pack sales.',
     keywords: () => 'make money with AI, side hustle, passive income, AI automation',
     content: () => {
       const methods = [
@@ -227,6 +236,7 @@ const articleTemplates = [
       ];
       return titles[Math.floor(Math.random() * titles.length)];
     },
+    summary: () => 'In-depth Claude 4 review comparing it with ChatGPT across coding, writing, reasoning, and pricing. Find out if Claude 4 is right for you.',
     keywords: () => 'Claude 4, AI review, ChatGPT comparison, Anthropic',
     content: () => [
         `Anthropic's Claude 4 has generated significant buzz in 2026. This in-depth review compares Claude 4 with ChatGPT across multiple dimensions.`,
@@ -263,7 +273,7 @@ function generateArticle(index) {
   return {
     id: id + '-' + idCounter.toString(36),
     title,
-    summary: content[0].slice(0, 120) + '...',
+    summary: (template.summary ? template.summary() : content[0].slice(0, 120) + '...'),
     keywords: template.keywords(),
     category: template.category,
     content,

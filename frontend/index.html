@@ -13,6 +13,8 @@
 <meta property="og:url" content="https://tool-site-p80e.onrender.com/">
 <link rel="canonical" href="https://tool-site-p80e.onrender.com/">
 <link rel="stylesheet" href="css/style.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
 <style>
 header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px 0; color: white; text-align: center; }
 header h1 { font-size: 2.2em; margin-bottom: 10px; }
@@ -81,6 +83,7 @@ header p { opacity: 0.9; font-size: 1.1em; max-width: 600px; margin: 0 auto; lin
     </div>
   </div>
   <div class="cat-section" id="catSections"></div>
+  <div style="margin:30px 0;text-align:center;min-height:90px"><div id="container-home-ad"></div></div>
   <div class="subscribe">
     <h2>Stay Updated</h2>
     <p>Get the latest AI tutorials and money-making tips weekly</p>
@@ -155,6 +158,10 @@ async function init() {
       </div>
     `;
   }
+  const ad = document.createElement('script');
+  ad.src = 'https://pl30084479.effectivecpmnetwork.com/7918889a6a2e82790342dc6ad4344a37/invoke.js';
+  ad.async = true; ad.setAttribute('data-cfasync', 'false');
+  document.getElementById('container-home-ad').appendChild(ad);
 }
 
 function subscribe() {
@@ -166,7 +173,6 @@ function subscribe() {
     btn.disabled = true;
     document.getElementById('subEmail').value = '';
     alert('Thank you! We\'ll notify you when we publish new articles.');
-  }
 }
 
 init();

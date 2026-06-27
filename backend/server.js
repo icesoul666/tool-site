@@ -86,12 +86,12 @@ app.get('/sitemap.xml', (req, res) => {
     { loc: baseUrl + '/', priority: '1.0' },
     { loc: baseUrl + '/blog/index.html', priority: '0.9' },
     ...categories.map(c => ({ loc: `${baseUrl}/category.html?cat=${encodeURIComponent(c)}`, priority: '0.8' })),
-    ...articles.map(a => ({ loc: `${baseUrl}/blog/article.html?id=${a.id}`, priority: '0.6' }))
+    ...articles.map(a => ({ loc: `${baseUrl}/blog/article.html?id=${a.id}`, priority: '0.6', lastmod: a.date }))
   ];
   res.set('Content-Type', 'application/xml');
   res.send(`<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  ${urls.map(u => `<url><loc>${u.loc}</loc><priority>${u.priority}</priority></url>`).join('\n  ')}
+  ${urls.map(u => `<url><loc>${u.loc}</loc><priority>${u.priority}</priority>${u.lastmod ? '<lastmod>' + u.lastmod + '</lastmod>' : ''}</url>`).join('\n  ')}
 </urlset>`);
 });
 
