@@ -39,6 +39,13 @@ header h1 { font-size: 1.5em; }
 .related-section h3 { margin-bottom: 10px; font-size: 1em; }
 .related-section a { color: #667eea; text-decoration: none; font-size: 0.9em; margin-right: 10px; }
 .related-section a:hover { text-decoration: underline; }
+.back-link { display: inline-block; margin-bottom: 20px; color: #667eea; text-decoration: none; font-size: 0.9em; }
+.back-link:hover { text-decoration: underline; }
+.breadcrumb { font-size: 0.85em; color: #999; margin-bottom: 15px; }
+.breadcrumb a { color: #667eea; text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+.back-top { position: fixed; bottom: 100px; right: 30px; background: #667eea; color: white; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.3em; box-shadow: 0 2px 10px rgba(102,126,234,0.3); opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 998; }
+.back-top.show { opacity: 1; pointer-events: auto; }
 .share-section { margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee; display: flex; gap: 10px; flex-wrap: wrap; }
 .share-section a { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-size: 0.85em; color: white; }
 .share-twitter { background: #1da1f2; }
@@ -54,11 +61,14 @@ header h1 { font-size: 1.5em; }
 </header>
 <div class="container">
   <div class="article-wrap">
+    <a class="back-link" href="index.html">&#8592; Back to Articles</a>
+    <div class="breadcrumb" id="breadcrumb"><a href="../index.html">Home</a> &rsaquo; <span id="breadcrumbCat">Article</span></div>
     <div class="article-body" id="articleContent">
       <p style="text-align:center;padding:40px;color:#999">Loading...</p>
     </div>
   </div>
 </div>
+<a class="back-top" id="backTop" href="#">&#8593;</a>
 <footer><div class="container"><p>AI Tools Tutorial &copy; 2026</p></div></footer>
 <div class="donate-float"><a href="https://ko-fi.com/icesoul66" target="_blank" style="background:#ff5e5b">&#9749; Buy me a coffee</a></div>
 <script>
@@ -110,6 +120,7 @@ async function loadArticle() {
     const data = await r.json();
     const a = data.article;
     document.title = a.title + ' - AI Tools Tutorial';
+    document.getElementById('breadcrumbCat').textContent = a.category;
     const desc = a.summary.replace(/<[^>]+>/g, '').slice(0, 160);
     document.querySelector('meta[name="description"]').content = desc;
     document.querySelector('meta[property="og:title"]').content = a.title;
@@ -161,6 +172,9 @@ async function loadArticle() {
   }
 }
 if (articleId) loadArticle();
+window.addEventListener('scroll', function() {
+  document.getElementById('backTop').classList.toggle('show', window.scrollY > 400);
+});
 </script>
 </body>
 </html>
