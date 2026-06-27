@@ -92,6 +92,7 @@ function renderContent(content) {
     }
     if (inList) { html += '</ul>\n'; inList = false; }
     if (inTable) { html += '</table>\n'; inTable = false; }
+    if (line.startsWith('<')) { html += line + '\n'; continue; }
     html += `<p>${formatInline(line)}</p>\n`;
   }
   if (inList) html += '</ul>\n';
