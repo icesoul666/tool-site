@@ -49,11 +49,6 @@ header p { opacity: 0.9; font-size: 1.1em; max-width: 600px; margin: 0 auto; lin
 .article-card h3 { font-size: 1.05em; margin-bottom: 6px; line-height: 1.4; }
 .article-card p { color: #888; font-size: 0.9em; line-height: 1.5; }
 .article-card .meta { margin-top: 10px; color: #bbb; font-size: 0.8em; }
-.subscribe { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; padding: 40px; text-align: center; color: white; margin: 30px 0; }
-.subscribe h2 { margin-bottom: 10px; }
-.subscribe p { opacity: 0.9; margin-bottom: 20px; }
-.subscribe input { padding: 12px 20px; border: none; border-radius: 8px; width: 300px; max-width: 90%; font-size: 1em; }
-.subscribe button { padding: 12px 28px; border: none; border-radius: 8px; background: #2ecc71; color: white; font-size: 1em; font-weight: 600; cursor: pointer; margin-left: 10px; }
 @media (max-width: 768px) {
   .featured-grid { grid-template-columns: 1fr; }
   .cat-grid { grid-template-columns: 1fr; }
@@ -84,14 +79,7 @@ header p { opacity: 0.9; font-size: 1.1em; max-width: 600px; margin: 0 auto; lin
   </div>
   <div class="cat-section" id="catSections"></div>
   <div style="margin:30px 0;text-align:center;min-height:90px"><div id="container-home-ad"></div></div>
-  <div class="subscribe">
-    <h2>Stay Updated</h2>
-    <p>Get the latest AI tutorials and money-making tips weekly</p>
-    <div>
-      <input type="email" placeholder="Enter your email" id="subEmail">
-      <button onclick="subscribe()">Subscribe</button>
-    </div>
-  </div>
+
 </div>
 <footer><div class="container"><p>AI Tools Tutorial &copy; <script>document.write(new Date().getFullYear())</script> - Explore the infinite possibilities of AI</p></div></footer>
 <div class="donate-float"><a href="https://ko-fi.com/icesoul66" target="_blank" style="background:#ff5e5b">☕ Buy me a coffee</a></div>
@@ -162,17 +150,6 @@ async function init() {
   ad.src = 'https://pl30084479.effectivecpmnetwork.com/7918889a6a2e82790342dc6ad4344a37/invoke.js';
   ad.async = true; ad.setAttribute('data-cfasync', 'false');
   document.getElementById('container-home-ad').appendChild(ad);
-}
-
-function subscribe() {
-    const email = document.getElementById('subEmail').value;
-    if (!email) return alert('Please enter your email');
-    const btn = document.querySelector('.subscribe button');
-    btn.textContent = 'Subscribed!';
-    btn.style.background = '#999';
-    btn.disabled = true;
-    document.getElementById('subEmail').value = '';
-    alert('Thank you! We\'ll notify you when we publish new articles.');
 }
 
 init();
