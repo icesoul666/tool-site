@@ -3,6 +3,7 @@ const path = require('path');
 const articlesPath = path.join(__dirname, '../articles/articles.json');
 
 const articleTemplates = [
+  
   {
     category: 'ChatGPT',
     title: (n) => `${n} Powerful ChatGPT Prompts to Boost Your Productivity in 2026`,
@@ -207,7 +208,7 @@ function generateBatch(count) {
   let articles = [];
   try { articles = JSON.parse(fs.readFileSync(articlesPath, 'utf-8')); } catch(e) { articles = []; }
   for (let i = 0; i < count; i++) {
-    const article = generateArticle(articles.length + i);
+    const article = generateArticle(articles.length);
     articles.push(article);
   }
   fs.writeFileSync(articlesPath, JSON.stringify(articles, null, 2), 'utf-8');
