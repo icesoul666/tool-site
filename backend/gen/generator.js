@@ -327,7 +327,7 @@ function generateArticle(index) {
   return {
     id: id + '-' + idCounter.toString(36),
     title,
-    author: 'Alex Chen',
+    author: 'Jayden Q',
     summary: (template.summary ? template.summary() : content[0].slice(0, 120) + '...'),
     keywords: template.keywords(),
     category: template.category,
