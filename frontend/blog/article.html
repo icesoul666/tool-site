@@ -20,6 +20,8 @@
 .article-body .meta { color: #999; font-size: 0.9em; margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
 .article-body .meta .reading-time { color: #aaa; font-size: 0.85em; }
 .article-body .featured-image { width: 100%; border-radius: 10px; margin-bottom: 25px; max-height: 400px; object-fit: cover; }
+.article-cover { width: 100%; border-radius: 10px; margin-bottom: 25px; min-height: 280px; display: flex; align-items: center; justify-content: center; padding: 40px; }
+.cover-title { color: white; font-size: 2rem; text-align: center; font-weight: 700; max-width: 600px; line-height: 1.3; margin: 0 !important; }
 .article-body .content { line-height: 1.8; color: #444; font-size: 1em; }
 .article-body .content h2 { font-size: 1.35em; margin: 30px 0 12px; color: #1a1a2e; }
 .article-body .content h3 { font-size: 1.1em; margin: 22px 0 8px; color: #333; }
@@ -54,6 +56,7 @@ header h1 { font-size: 1.5em; }
 </style>
 </head>
 <body>
+<div id="progressBar" style="position:fixed;top:0;left:0;height:3px;background:#f0c040;z-index:9999;width:0%;transition:width 0.1s"></div>
 <header>
   <div class="container">
     <h1><a href="../index.html" style="color:white;text-decoration:none">AI Tools Tutorial</a></h1>
@@ -138,17 +141,22 @@ async function loadArticle() {
       description: desc,
       image: a.image || '',
       datePublished: a.date,
-      author: { '@type': 'Organization', name: 'AI Tools Tutorial' },
-      publisher: { '@type': 'Organization', name: 'AI Tools Tutorial' },
+      author: { '@type': 'Person', name: a.author || 'Alex Chen' },
+      publisher: { '@type': 'Person', name: a.author || 'Alex Chen' },
       mainEntityOfPage: { '@type': 'WebPage', '@id': window.location.href }
     };
     document.head.insertAdjacentHTML('beforeend', '<script type="application/ld+json">' + JSON.stringify(jsonld) + '<\/script>');
     const readingTime = calcReadingTime(a.content);
     const content = document.getElementById('articleContent');
     let html = '';
-    if (a.image) html += `<img class="featured-image" src="${a.image}" alt="${escapeHtml(a.title)}" loading="lazy">`;
-    html += `<h1>${a.title}</h1>`;
-    html += `<div class="meta"><span>${a.date} &#183; ${a.category}</span><span class="reading-time">&#128337; ${readingTime}</span></div>`;
+    if (a.image) {
+      html += `<img class="featured-image" src="${a.image}" alt="${escapeHtml(a.title)}" loading="lazy">`;
+    } else {
+      const colors = ['#667eea-#764ba2', '#1a1a2e-#16213e', '#0f3443-#34e89e', '#c94b4b-#4b134f', '#0f0c29-#302b63'];
+      const c = colors[Math.floor(Math.random() * colors.length)].split('-');
+      html += `<div class="article-cover" style="background:linear-gradient(135deg,${c[0]},${c[1]})"><h1 class="cover-title">${escapeHtml(a.title)}</h1></div>`;
+    }
+    html += `<div class="meta"><span>${a.author ? '👤 ' + a.author + ' · ' : ''}${a.date} &#183; ${a.category}</span><span class="reading-time">&#128337; ${readingTime}</span></div>`;
     html += `<div class="content">${renderContent(a.content)}</div>`;
     const related = await fetch(API + '/articles?category=' + encodeURIComponent(a.category) + '&limit=4').then(r => r.json());
     const others = related.articles.filter(x => x.id !== a.id).slice(0, 3);
@@ -173,7 +181,10 @@ async function loadArticle() {
 }
 if (articleId) loadArticle();
 window.addEventListener('scroll', function() {
-  document.getElementById('backTop').classList.toggle('show', window.scrollY > 400);
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  document.getElementById('progressBar').style.width = (scrollTop / docHeight) * 100 + '%';
+  document.getElementById('backTop').classList.toggle('show', scrollTop > 400);
 });
 </script>
 </body>

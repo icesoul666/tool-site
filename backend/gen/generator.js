@@ -59,8 +59,7 @@ const articleTemplates = [
         `## Common Mistakes to Avoid`,
         `- Using vague prompts like "write something about AI"\n- Not providing enough context or examples\n- Accepting the first answer without iteration\n- Forgetting to set format and tone expectations`,
         `## Ready to Master ChatGPT?`,
-        `Start applying these techniques today. The more you practice, the better your results will be.`,
-        `<p style="color:#999;font-size:0.9em;margin-top:30px">* This article was AI-assisted and is for reference only.</p>`
+        `Start applying these techniques today. The more you practice, the better your results will be.`
       ];
     }
   },
@@ -113,8 +112,7 @@ const articleTemplates = [
         `## Common Beginner Mistakes`,
         `- Overloading prompts with too many conflicting styles\n- Ignoring aspect ratio parameters\n- Not using seed values for consistency\n- Expecting perfect results on the first try`,
         `## Ready to Create?`,
-        `Start with the free tier and experiment with different prompts. Practice is the fastest way to master AI art.`,
-        `<p style="color:#999;font-size:0.9em;margin-top:30px">* This article was AI-assisted and is for reference only.</p>`
+        `Start with the free tier and experiment with different prompts. Practice is the fastest way to master AI art.`
       ];
     }
   },
@@ -163,8 +161,7 @@ const articleTemplates = [
         `## How to Choose`,
         `Match tools to your needs:\n- Writing: Claude 4, Notion AI\n- Image generation: Stable Diffusion 3, Canva AI\n- Coding: GitHub Copilot, Perplexity AI\n- Video editing: Runway ML`,
         `## Start Exploring`,
-        `Most of these tools offer free trials. Pick one that fits your needs and start exploring today.`,
-        `<p style="color:#999;font-size:0.9em;margin-top:30px">* This article was AI-assisted and is for reference only.</p>`
+        `Most of these tools offer free trials. Pick one that fits your needs and start exploring today.`
       ];
     }
   },
@@ -220,8 +217,7 @@ const articleTemplates = [
         `## Recommendations`,
         `- Best overall → Cursor\n- Best IDE support → Copilot\n- Best free option → Codeium`,
         `## Try Them Yourself`,
-        `All three tools offer free tiers. Try each one for a week to find the best fit for your workflow.`,
-        `<p style="color:#999;font-size:0.9em;margin-top:30px">* This article was AI-assisted and is for reference only.</p>`
+        `All three tools offer free tiers. Try each one for a week to find the best fit for your workflow.`
       ]
   },
   {
@@ -269,8 +265,7 @@ const articleTemplates = [
         `## Getting Started`,
         `Don't overthink it. Pick one method, start with a small project, and iterate. The key is taking action, not waiting for the perfect plan.`,
         `## Conclusion`,
-        `The barrier to making money with AI is lower than most people think. Start small, learn fast, and scale what works.`,
-        `<p style="color:#999;font-size:0.9em;margin-top:30px">* This article was AI-assisted and is for reference only.</p>`
+        `The barrier to making money with AI is lower than most people think. Start small, learn fast, and scale what works.`
       ];
     }
   },
@@ -314,8 +309,7 @@ const articleTemplates = [
         `## Claude 4 Weaknesses`,
         `- Plugin ecosystem is less mature than ChatGPT\n- Real-time information retrieval is weaker\n- Voice features not yet available`,
         `## Should You Switch?`,
-        `Claude 4 is arguably the strongest all-round AI model in 2026. For coding, writing, and analysis, it may be a better choice than ChatGPT.`,
-        `<p style="color:#999;font-size:0.9em;margin-top:30px">* This article was AI-assisted and is for reference only.</p>`
+        `Claude 4 is arguably the strongest all-round AI model in 2026. For coding, writing, and analysis, it may be a better choice than ChatGPT.`
       ]
   },
 ];
@@ -333,11 +327,12 @@ function generateArticle(index) {
   return {
     id: id + '-' + idCounter.toString(36),
     title,
+    author: 'Alex Chen',
     summary: (template.summary ? template.summary() : content[0].slice(0, 120) + '...'),
     keywords: template.keywords(),
     category: template.category,
     content,
-    image: categoryImages[template.category],
+    image: null,
     date: new Date().toISOString().split('T')[0]
   };
 }
