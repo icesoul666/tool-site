@@ -312,6 +312,313 @@ const articleTemplates = [
         `Claude 4 is arguably the strongest all-round AI model in 2026. For coding, writing, and analysis, it may be a better choice than ChatGPT.`
       ]
   },
+
+  {
+    category: 'ChatGPT',
+    title: (n) => {
+      const t = [
+        `ChatGPT for Business: ${n} Ways to Automate Your Workflow`,
+        `Save Hours Daily: ${n} ChatGPT Business Automation Ideas`,
+        `How Companies Use ChatGPT: ${n} Real-World Examples`,
+        `ChatGPT Customer Support: ${n} Templates That Work`,
+        `Automate Data Entry with ChatGPT: ${n} Practical Setups`,
+        `ChatGPT for Marketing: ${n} Campaign Ideas That Convert`,
+        `${n} ChatGPT Integrations Every Business Needs in 2026`,
+        `Reduce Costs with ChatGPT: ${n} Proven Strategies`,
+        `ChatGPT for HR: ${n} Tasks You Can Automate Today`,
+        `Content Production at Scale: ChatGPT for ${n}-Person Teams`,
+        `ChatGPT Meeting Assistant: ${n} Ways to Save Time`,
+        `Build a ChatGPT-Powered Dashboard: ${n} Key Metrics`,
+        `ChatGPT for Sales: ${n} Templates That Close Deals`,
+        `${n} ChatGPT Workflows That Paid for Themselves in a Month`,
+        `Enterprise ChatGPT: ${n} Security-First Deployment Tips`,
+      ];
+      return t[Math.floor(Math.random() * t.length)];
+    },
+    summary: () => 'Practical ChatGPT business automation strategies covering customer support, marketing, data entry, and sales. Real workflows that save hours daily.',
+    keywords: () => 'ChatGPT business, AI automation, workflow, productivity, enterprise AI',
+    content: () => {
+      const useCases = [
+        { t: 'Customer Support Automation', d: 'Set up ChatGPT to handle common customer inquiries — order status, returns, FAQs. Reduce support ticket volume by 60-80% while maintaining 24/7 coverage.' },
+        { t: 'Email Response Generation', d: 'Use ChatGPT to draft professional email responses. Include specific context (customer name, order number, issue) for personalized replies at scale.' },
+        { t: 'Data Entry and Extraction', d: 'Feed invoices, receipts, or forms to ChatGPT and extract structured data. Works with PDFs, images, and scanned documents.' },
+        { t: 'Marketing Copy Generation', d: 'Generate blog posts, social media content, ad copy, and email newsletters. Maintain brand voice by providing examples of your existing content.' },
+        { t: 'Meeting Notes and Summaries', d: 'Paste meeting transcripts into ChatGPT for instant summaries, action items, and decision logs. Saves hours of manual note-taking per week.' },
+        { t: 'HR Onboarding Documentation', d: 'Create employee handbooks, training materials, and onboarding checklists tailored to your company policies using ChatGPT.' },
+        { t: 'Sales Script Optimization', d: 'Input your current sales scripts and ask ChatGPT to optimize for different customer personas and objection handling.' },
+        { t: 'Internal Knowledge Base', d: 'Build a ChatGPT-powered internal wiki where employees can ask questions about company policies, procedures, and technical documentation.' },
+      ];
+      const selected = useCases.sort(() => Math.random() - 0.5).slice(0, 5 + Math.floor(Math.random() * 2));
+      return [
+        `ChatGPT isn't just for casual conversation — it's a powerful business automation tool. This guide covers practical, real-world applications that save companies hours every day.`,
+        `## Why Automate with ChatGPT?`,
+        `Business automation with ChatGPT costs a fraction of traditional software development. Most workflows can be set up in hours, not weeks, with zero coding required.`,
+        `## Top Business Use Cases`,
+        ...selected.flatMap(u => [`### ${u.t}`, u.d]),
+        `## Getting Started Checklist`,
+        `- Identify your most repetitive task (email, data entry, customer service)\n- Write clear instructions for ChatGPT (role + task + format)\n- Test with 10-20 real examples before full deployment\n- Monitor output quality weekly and refine prompts`,
+        `## Common Pitfalls`,
+        `- Expecting 100% accuracy without human review\n- Not providing enough company-specific context\n- Using ChatGPT for sensitive financial or legal decisions without verification`,
+        `## Start Today`,
+        `Pick one workflow, spend 2 hours setting it up, and measure the time saved. Most businesses see ROI within the first week.`
+      ];
+    }
+  },
+  {
+    category: 'AI Art',
+    title: (n) => {
+      const t = [
+        `DALL-E 3 Complete Guide: ${n} Tips for Stunning Results`,
+        `DALL-E 3 vs Midjourney: ${n} Key Differences in 2026`,
+        `Master DALL-E 3: ${n} Advanced Prompt Techniques`,
+        `Create Professional Product Shots with DALL-E 3`,
+        `DALL-E 3 for Designers: ${n} Workflow Integration Tips`,
+        `AI Product Photography: ${n} DALL-E 3 Techniques That Work`,
+        `DALL-E 3 Character Design: ${n} Tips for Consistency`,
+        `From Sketch to Render: Using DALL-E 3 in Your Pipeline`,
+        `${n} DALL-E 3 Parameters You Need to Master`,
+        `DALL-E 3 for Social Media: ${n} Visual Content Ideas`,
+        `AI Image Generation Ethics: What DALL-E 3 Users Must Know`,
+        `DALL-E 3 vs Stable Diffusion 3: ${n} Categories Compared`,
+        `Commercial Use of DALL-E 3: ${n} Things to Consider`,
+        `DALL-E 3 Batch Generation: ${n} Tips for Efficiency`,
+        `Teaching DALL-E 3 Your Style: ${n} Customization Methods`,
+      ];
+      return t[Math.floor(Math.random() * t.length)];
+    },
+    summary: () => 'Complete DALL-E 3 guide with advanced prompt techniques, parameter tuning, and practical workflows for designers, marketers, and content creators.',
+    keywords: () => 'DALL-E 3, AI image generation, OpenAI, AI art, DALL-E tutorial',
+    content: () => {
+      const features = [
+        { t: 'Prompt Structure for DALL-E 3', d: 'Unlike Midjourney, DALL-E 3 works best with natural language descriptions. Be specific about subject, setting, lighting, mood, and composition. Example: "A minimalist workspace with a wooden desk, morning sunlight streaming through blinds, a laptop and coffee cup, photorealistic style."' },
+        { t: 'Style Control', d: 'Use descriptive style keywords: "photorealistic", "cinematic lighting", "studio photography", "vector illustration", "watercolor", "3D render", "pixel art". Combine 2-3 styles for unique results.' },
+        { t: 'Composition Techniques', d: 'Specify camera angles and framing: "low angle shot", "bird\'s eye view", "close-up portrait", "wide angle landscape", "macro photography". This dramatically affects the output.' },
+        { t: 'Color Palette Control', d: 'Include color specifications: "warm autumn colors", "monochromatic blue", "pastel palette", "neon cyberpunk". DALL-E 3 is particularly good at following color guidance.' },
+        { t: 'Text in Images', d: 'DALL-E 3 has significantly improved text rendering. You can include signs, labels, and title text in your images. Keep text short (1-3 words) for best results.' },
+        { t: 'Image Variations', d: 'Upload a reference image and ask DALL-E 3 to create variations or incorporate elements from it into new compositions. Great for brand consistency.' },
+        { t: 'Outpainting', d: 'Extend existing images beyond their original boundaries. Perfect for creating wider scenes from product photos or expanding compositions for different aspect ratios.' },
+        { t: 'Consistent Characters', d: 'Maintain character appearance across multiple generations by providing the same reference image and detailed character descriptions in each prompt.' },
+      ];
+      const selected = features.sort(() => Math.random() - 0.5).slice(0, 5 + Math.floor(Math.random() * 2));
+      return [
+        `DALL-E 3 is OpenAI's most advanced image generation model, offering exceptional text understanding and photorealistic output. This comprehensive guide covers everything from basic prompts to pro-level techniques.`,
+        `## What Makes DALL-E 3 Different?`,
+        `Unlike Midjourney's Discord-based interface, DALL-E 3 is integrated directly into ChatGPT Plus and offers a standalone web interface. Its key advantage is understanding complex, natural language descriptions without needing special syntax.`,
+        `## Getting Started with DALL-E 3`,
+        `DALL-E 3 is available through ChatGPT Plus ($20/month) and via OpenAI's API. The web interface is intuitive: type your description and the AI generates four variations. You can refine, edit, and download directly.`,
+        `## Advanced Techniques`,
+        ...selected.flatMap(f => [`### ${f.t}`, f.d]),
+        `## Pro Tips for Better Results`,
+        `- Start simple and add details incrementally\n- Use photo terminology for realistic results, illustration terms for artistic results\n- Include aspect ratio in description ("16:9 wide shot", "4:3 portrait")\n- Save successful prompts as templates for reuse`,
+        `## DALL-E 3 vs Midjourney: Quick Take`,
+        `DALL-E 3 wins on text understanding and ease of use. Midjourney wins on artistic style variety and parameter control. Both are excellent — your choice depends on which workflow suits you better.`
+      ];
+    }
+  },
+  {
+    category: 'AI Tools',
+    title: (n) => {
+      const t = [
+        `${n} AI Productivity Tools That Save 2+ Hours Daily`,
+        `Build Your AI Toolkit: ${n} Essential Productivity Apps`,
+        `Best AI Chrome Extensions: ${n} Tools for Faster Browsing`,
+        `AI Writing Assistants Compared: ${n} Tools for Content Creators`,
+        `AI Task Management: ${n} Tools That Automate Your To-Do List`,
+        `Automate Repetitive Work: ${n} AI Tools That Do the Boring Stuff`,
+        `${n} AI Tools Every Remote Worker Needs in 2026`,
+        `AI Scheduling Assistants: ${n} Tools That Manage Your Calendar`,
+        `Best Free AI Note-Taking Apps: ${n} Options for 2026`,
+        `AI Research Tools: ${n} Assistants for Faster Information Gathering`,
+        `Email Automation with AI: ${n} Tools That Clear Your Inbox`,
+        `AI Meeting Assistants: ${n} Tools That Take Notes for You`,
+        `Personal AI Assistants: ${n} Tools That Organize Your Life`,
+        `AI Data Visualization: ${n} Tools for Instant Charts and Reports`,
+        `${n} Open-Source AI Tools You Can Self-Host for Free`,
+      ];
+      return t[Math.floor(Math.random() * t.length)];
+    },
+    summary: () => 'Curated list of the best AI productivity tools that save you hours daily. Writing assistants, note-taking apps, scheduling tools, and more for 2026.',
+    keywords: () => 'productivity tools, AI assistants, automation, time management, workflow',
+    content: () => {
+      const categories_data = [
+        { t: 'AI Writing Assistants', d: 'Tools like Grammarly, Jasper, and Copy.ai that help you write emails, reports, and content faster. Most offer free tiers that handle basic grammar and style suggestions.' },
+        { t: 'AI Note-Taking Apps', d: 'Otter.ai and Fireflies.ai automatically transcribe and summarize meetings. Notion AI and Mem help organize and search your notes intelligently.' },
+        { t: 'AI Task Management', d: 'Tools like Motion and Akiflow use AI to automatically schedule your tasks based on priority and deadlines. They learn your working patterns over time.' },
+        { t: 'AI Email Assistants', d: 'Superhuman and Shortwave use AI to prioritize emails, suggest replies, and batch notifications. Users report clearing their inbox in half the time.' },
+        { t: 'AI Meeting Summarizers', d: 'Fellow, Clara, and Sembly AI join your meetings, take notes, and generate action items automatically. No more manual meeting notes.' },
+        { t: 'AI Research Assistants', d: 'Perplexity AI and Elicit help you research topics faster by summarizing articles, finding sources, and answering questions with citations.' },
+        { t: 'AI Code Generators', d: 'GitHub Copilot, Tabnine, and Cursor provide AI-powered code completion, debugging, and refactoring for developers of all skill levels.' },
+        { t: 'AI Data Analysis Tools', d: 'Julius AI, ChatGPT Advanced Data Analysis, and Obviously AI let you upload CSV files and get instant insights, charts, and predictions without coding.' },
+      ];
+      const selected = categories_data.sort(() => Math.random() - 0.5).slice(0, 5 + Math.floor(Math.random() * 2));
+      return [
+        `AI productivity tools have matured significantly in 2026. This guide covers the most effective tools across writing, meetings, task management, and research — all tested and ranked for real-world use.`,
+        `## How We Evaluated`,
+        `Each tool was tested for 7+ days in real workflows. We measured time saved, learning curve, free tier quality, and integration with existing tools. Only the best made this list.`,
+        `## Top Categories`,
+        ...selected.flatMap(c => [`### ${c.t}`, c.d]),
+        `## Building Your Stack`,
+        `Start with one category — the one where you waste the most time. Master that tool first, then add more. Most productivity gains come from depth with one tool, not breadth across many.`,
+        `## Free vs Paid`,
+        `All tools listed offer meaningful free tiers. Upgrade only when you've outgrown the free version. The best tool is the one you'll actually use consistently.`
+      ];
+    }
+  },
+  {
+    category: 'AI Coding',
+    title: (n) => {
+      const t = [
+        `AI for Non-Programmers: Build Apps Without Writing Code`,
+        `No-Code AI: ${n} Tools That Let Anyone Build Software`,
+        `From Idea to App: Building with AI When You Can't Code`,
+        `${n} No-Code Platforms Powered by AI in 2026`,
+        `Build a Website with AI: Step-by-Step for Non-Developers`,
+        `AI Automation Without Coding: ${n} Tools That Do the Work`,
+        `Create Chatbots Without Code: ${n} AI Platforms Compared`,
+        `AI for Small Business Owners: ${n} No-Code Solutions`,
+        `Build Internal Tools with AI: ${n} Platforms for Non-Tech Teams`,
+        `AI Database Management: ${n} No-Code Tools for Data Work`,
+        `Design and Prototype with AI: ${n} Tools for Non-Designers`,
+        `${n} AI Workflow Builders That Require Zero Programming`,
+        `Launch a SaaS with No Code: ${n} AI-Powered Platforms`,
+        `AI for Excel Users: ${n} Tools That Automate Spreadsheets`,
+        `Teach Yourself to Build: ${n} AI-Assisted Learning Platforms`,
+      ];
+      return t[Math.floor(Math.random() * t.length)];
+    },
+    summary: () => 'Build apps, websites, and automations without writing code using AI-powered no-code platforms. Perfect for non-programmers and small business owners.',
+    keywords: () => 'no-code, AI app builder, non-programmer, automation, no-code platforms',
+    content: () => {
+      const platforms = [
+        { t: 'Bubble + AI', d: 'Build full-featured web applications visually. Bubble\'s AI assistant helps you design databases, create workflows, and generate responsive layouts. Best for complex apps.' },
+        { t: 'Bolt.new', d: 'An AI-powered web app builder that generates production-ready code from plain English descriptions. You describe what you want, and it builds it — no coding required.' },
+        { t: 'Zapier AI', d: 'Connect 6,000+ apps and automate workflows without code. The AI assistant can design multi-step automations from a simple description of what you need.' },
+        { t: 'Make (formerly Integromat)', d: 'Visual automation platform with AI-enhanced scenario building. Create complex integrations between apps with a drag-and-drop interface.' },
+        { t: 'Webflow + AI', d: 'Build professional websites visually with AI-assisted design suggestions, content generation, and layout optimization. No coding required for most use cases.' },
+        { t: 'Airtable AI', d: 'AI-enhanced database and spreadsheet tool. Describe what you want to track, and Airtable automatically creates the schema, fields, and views.' },
+        { t: 'FlutterFlow + AI', d: 'Build native mobile apps for iOS and Android using a visual editor. AI assists with widget placement, styling, and logic building.' },
+        { t: 'Copilot Studio', d: 'Microsoft\'s no-code chatbot builder. Create AI-powered customer service bots, internal help desks, and FAQ assistants without programming.' },
+      ];
+      const selected = platforms.sort(() => Math.random() - 0.5).slice(0, 5 + Math.floor(Math.random() * 2));
+      return [
+        `You don't need to be a programmer to build software in 2026. AI-powered no-code platforms let anyone turn ideas into working applications. This guide covers the best options.`,
+        `## Why No-Code + AI?`,
+        `Traditional development requires months of learning and expensive hires. No-code AI tools reduce this to hours. You describe what you want, and the AI handles the technical implementation.`,
+        `## Best No-Code AI Platforms`,
+        ...selected.flatMap(p => [`### ${p.t}`, p.d]),
+        `## How to Choose`,
+        `- Web apps → Bubble or Bolt.new\n- Workflows → Zapier or Make\n- Websites → Webflow\n- Mobile apps → FlutterFlow\n- Chatbots → Copilot Studio`,
+        `## Getting Started in 3 Steps`,
+        `1. Describe your idea clearly (what problem does it solve?)\n2. Choose a platform from the list above\n3. Start with a minimal version and iterate based on feedback`,
+        `## The Future is No-Code`,
+        `AI is making software development accessible to everyone. The best time to start building was yesterday. The second best time is now.`
+      ];
+    }
+  },
+  {
+    category: 'Make Money',
+    title: (n) => {
+      const t = [
+        `Best AI Freelancing Platforms: ${n} Sites to Start Earning`,
+        `AI Freelancing in 2026: ${n} Skills That Pay $50+/Hour`,
+        `From Zero to $1000/Month: AI Freelancing Blueprint`,
+        `Top ${n} Freelance Platforms for AI-Powered Services`,
+        `AI Writing Freelancing: ${n} Niches That Pay Well`,
+        `AI Design Freelancing: How to Charge Premium Rates`,
+        `Build an AI Freelance Profile: ${n} Tips That Get Hired`,
+        `AI Freelancing for Beginners: ${n} Platforms to Start Today`,
+        `Scale Your Freelance Income: ${n} AI Tools for Efficiency`,
+        `${n} AI Services That Clients Are Willing to Pay For`,
+        `Upwork vs Fiverr vs Toptal: Best Platform for AI Freelancers`,
+        `AI Consulting Freelancing: How to Charge $150-$300/Hour`,
+        `Passive Income for Freelancers: ${n} AI Products to Sell`,
+        `AI Freelance Proposal Templates: ${n} Examples That Win`,
+        `From Side Hustle to Full-Time: AI Freelancing Success Plan`,
+      ];
+      return t[Math.floor(Math.random() * t.length)];
+    },
+    summary: () => 'Complete guide to AI freelancing in 2026 covering the best platforms, most profitable skills, and strategies to land high-paying clients.',
+    keywords: () => 'freelancing, AI freelancer, Upwork, Fiverr, make money freelancing',
+    content: () => {
+      const platforms = [
+        { t: 'Upwork', d: 'Largest freelancing platform with dedicated AI/ML categories. Top AI freelancers earn $100-$200/hour. Create a specialized profile highlighting specific AI skills like prompt engineering or AI workflow automation.' },
+        { t: 'Fiverr', d: 'Best for packaged AI services. Create "gigs" like "I will write 10 ChatGPT prompts for your business" or "I will automate your workflow with AI". Pricing at $30-$150 per gig works well here.' },
+        { t: 'Toptal', d: 'Elite freelancing platform for top-tier AI consultants. Acceptance rate is ~3%. Rates start at $100/hour and go up to $300/hour for specialized AI implementation projects.' },
+        { t: 'Freelancer.com', d: 'Good for project-based AI work. Competitions and project bidding are the main formats. Best for AI content creation and basic automation projects.' },
+        { t: 'PeoplePerHour', d: 'Popular in UK/Europe. AI services in high demand include chatbot setup, AI content strategy, and AI tool training for businesses.' },
+        { t: 'Contra', d: 'Modern freelancing platform with no commission fees. Growing AI category. Best for AI consultants offering ongoing retainer-based services.' },
+        { t: 'Guru', d: 'Niche platform well-suited for AI data annotation, AI training data creation, and AI model testing services at competitive rates.' },
+        { t: 'LinkedIn Services Marketplace', d: 'Newer marketplace integrated with LinkedIn profiles. Best for B2B AI consulting. Clients find you based on your existing professional network.' },
+      ];
+      const selected = platforms.sort(() => Math.random() - 0.5).slice(0, 4 + Math.floor(Math.random() * 2));
+      return [
+        `AI freelancing is one of the fastest-growing service categories in 2026. Companies are desperate for people who understand AI tools but don't know where to start. This is your opportunity.`,
+        `## Why AI Freelancing?`,
+        `Traditional freelancing requires years of expertise. AI freelancing requires knowing how to use tools that have only existed for 2-3 years. The barrier to entry is low, but demand is high.`,
+        `## Best Platforms for AI Freelancers`,
+        ...selected.flatMap(p => [`### ${p.t}`, p.d]),
+        `## Most Profitable AI Freelance Services`,
+        `- Prompt Engineering: $50-$150/hour\n- AI Workflow Automation: $75-$200/hour\n- AI Content Strategy: $60-$150/hour\n- AI Tool Training: $100-$250/hour\n- Custom Chatbot Development: $100-$300/hour`,
+        `## Getting Your First Client`,
+        `1. Pick one service and one platform\n2. Create 3 sample deliverables (before/after examples work best)\n3. Set your initial rate 30% below market to get first reviews\n4. Deliver exceptional quality and ask for testimonials\n5. Raise rates after 5 completed projects`,
+        `## Avoid These Mistakes`,
+        `- Underselling: Don't charge $10/hour for AI work. $50/hour minimum.\n- Overpromising: Be clear about what AI can and can't do\n- No portfolio: Always build sample work before applying to jobs`,
+        `The AI freelancing market is growing exponentially. The window of opportunity is now — while demand exceeds supply.`
+      ];
+    }
+  },
+  {
+    category: 'Claude',
+    title: (n) => {
+      const t = [
+        `Claude API Tutorial: Build Your First AI App in ${n} Minutes`,
+        `Getting Started with Claude API: ${n} Practical Examples`,
+        `Build a Chatbot with Claude API: Step-by-Step Guide`,
+        `Claude API Pricing: ${n} Tips to Minimize Costs`,
+        `Claude API vs OpenAI API: ${n} Key Differences for Developers`,
+        `${n} Claude API Features Every Developer Should Know`,
+        `Claude API for Content Generation: ${n} Integration Patterns`,
+        `Streaming with Claude API: ${n} Performance Optimization Tips`,
+        `Claude API Safety Features: ${n} Best Practices for Developers`,
+        `Build a RAG System with Claude API: ${n} Steps to Production`,
+        `Claude API Function Calling: ${n} Real-World Use Cases`,
+        `Claude API Rate Limits: ${n} Strategies for High-Volume Apps`,
+        `Error Handling in Claude API: ${n} Patterns That Work`,
+        `Claude API with Python: ${n} Code Examples for Common Tasks`,
+        `Deploy a Claude API App: ${n} Hosting Options Compared`,
+      ];
+      return t[Math.floor(Math.random() * t.length)];
+    },
+    summary: () => 'Practical Claude API tutorial for developers covering setup, streaming, function calling, pricing optimization, and production deployment.',
+    keywords: () => 'Claude API, Anthropic API, AI development, API tutorial, LLM integration',
+    content: () => {
+      const topics = [
+        { t: 'Getting Your API Key', d: 'Sign up at console.anthropic.com. Free tier includes $5 in credits. API keys are generated per project. Store them securely using environment variables, never in client-side code.' },
+        { t: 'Basic API Call', d: 'The Messages API is simple: send an array of message objects with role ("user" or "assistant") and content. Claude returns streaming or complete responses based on your stream parameter.' },
+        { t: 'System Prompts', d: 'Set the system parameter to define Claude\'s behavior, expertise, and constraints. A well-written system prompt dramatically improves output quality and consistency.' },
+        { t: 'Streaming Responses', d: 'Set stream: true for real-time token-by-token output. Essential for chat applications. Implement proper error handling for interrupted streams.' },
+        { t: 'Function Calling (Tools)', d: 'Define tools as JSON schema objects. Claude can decide when to call them, extract parameters, and use returned data in its response. Powerful for automation workflows.' },
+        { t: 'Context Management', d: 'Claude supports 200K token context. Be strategic about what you include — prioritize recent and relevant information. Use summarization for older context.' },
+        { t: 'Error Handling', d: 'Handle rate limits (429), overloaded (529), and authentication errors (401). Implement exponential backoff for retries. Log errors for debugging.' },
+        { t: 'Cost Optimization', d: 'Use shorter prompts, cache common prefixes, batch similar requests, and use the appropriate model (Haiku for simple tasks, Sonnet for complex). Monitor usage via the Anthropic dashboard.' },
+      ];
+      const selected = topics.sort(() => Math.random() - 0.5).slice(0, 5 + Math.floor(Math.random() * 2));
+      return [
+        `The Claude API gives developers access to Anthropic's most powerful language models. This practical tutorial covers everything from your first API call to production deployment.`,
+        `## Why Claude API?`,
+        `Claude offers the longest context window (200K tokens), superior coding and reasoning capabilities, and built-in safety features. The API is straightforward, well-documented, and competitively priced.`,
+        `## Getting Started`,
+        `1. Create an account at console.anthropic.com\n2. Generate an API key\n3. Install the SDK: npm install @anthropic-ai/sdk\n4. Make your first API call in under 5 minutes`,
+        `## Core Concepts`,
+        ...selected.flatMap(t => [`### ${t.t}`, t.d]),
+        `## Example: Simple Chat App`,
+        `const Anthropic = require('@anthropic-ai/sdk');\nconst client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });\n\nconst response = await client.messages.create({\n  model: 'claude-sonnet-4-20260514',\n  max_tokens: 1024,\n  messages: [{ role: 'user', content: 'Hello, Claude!' }]\n});\n\nconsole.log(response.content[0].text);`,
+        `## Production Checklist`,
+        `- Implement proper error handling and retries\n- Use environment variables for API keys\n- Add monitoring and usage tracking\n- Set up cost alerts in the Anthropic dashboard\n- Test with edge cases before launching`,
+        `The Claude API is powerful and developer-friendly. Start with a simple project, experiment with features, and scale up as you gain confidence.`
+      ];
+    }
+  },
 ];
 
 let idCounter = Date.now();
