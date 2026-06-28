@@ -1,6 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 const articlesPath = path.join(__dirname, '../articles/articles.json');
+const archivePath = path.join(__dirname, '../articles/articles_archive.json');
+const MAX_ARTICLES = 500;
 
 const YEAR = new Date().getFullYear();
 const categories = ['ChatGPT', 'AI Art', 'AI Tools', 'AI Coding', 'Make Money', 'Claude'];
@@ -504,8 +506,46 @@ const articleTemplates = buildTemplates();
 
 let idCounter = Date.now();
 
-function generateArticle(index) {
-  const template = articleTemplates[index % articleTemplates.length];
+function pickTemplateIndex(articles) {
+  const totalTemplates = articleTemplates.length;
+  const total = articles.length;
+  const recentCount = Math.min(total, totalTemplates);
+  const used = new Set();
+  for (let i = total - recentCount; i < total; i++) {
+    used.add(i % totalTemplates);
+  }
+  let idx = total % totalTemplates;
+  let attempts = 0;
+  while (used.has(idx) && attempts < totalTemplates) {
+    idx = (idx + 1) % totalTemplates;
+    attempts++;
+  }
+  return idx;
+}
+
+function addInternalLinks(allArticles, newArticles) {
+  for (const art of newArticles) {
+    const sameCat = allArticles.filter(a => a.category === art.category && a.id !== art.id);
+    if (sameCat.length > 0) {
+      const pick = sameCat[Math.floor(Math.random() * sameCat.length)];
+      art.content.push(`<p style="margin-top:20px">Also read: <a href="article.html?id=${pick.id}">${pick.title}</a></p>`);
+    }
+  }
+}
+
+function trimArticles(articles) {
+  if (articles.length <= MAX_ARTICLES) return articles;
+  const overflow = articles.splice(0, articles.length - MAX_ARTICLES);
+  let archive = [];
+  try { archive = JSON.parse(fs.readFileSync(archivePath, 'utf-8')); } catch (e) { archive = []; }
+  archive.push(...overflow);
+  fs.writeFileSync(archivePath, JSON.stringify(archive, null, 2), 'utf-8');
+  console.log(`Archived ${overflow.length} old articles, keeping latest ${articles.length}`);
+  return articles;
+}
+
+function generateArticle(index, templateIdx) {
+  const template = articleTemplates[templateIdx];
   const n = 5 + Math.floor(Math.random() * 10);
   const content = template.content();
   const title = template.title(n);
@@ -528,10 +568,15 @@ function generateArticle(index) {
 function generateBatch(count) {
   let articles = [];
   try { articles = JSON.parse(fs.readFileSync(articlesPath, 'utf-8')); } catch(e) { articles = []; }
+  const newArticles = [];
   for (let i = 0; i < count; i++) {
-    const article = generateArticle(articles.length);
+    const idx = pickTemplateIndex(articles);
+    const article = generateArticle(articles.length, idx);
     articles.push(article);
+    newArticles.push(article);
   }
+  addInternalLinks(articles, newArticles);
+  articles = trimArticles(articles);
   fs.writeFileSync(articlesPath, JSON.stringify(articles, null, 2), 'utf-8');
   console.log(`Generated ${count} articles, total: ${articles.length}`);
 }
@@ -539,8 +584,11 @@ function generateBatch(count) {
 function generateDaily() {
   let articles = [];
   try { articles = JSON.parse(fs.readFileSync(articlesPath, 'utf-8')); } catch(e) { articles = []; }
-  const article = generateArticle(articles.length);
+  const idx = pickTemplateIndex(articles);
+  const article = generateArticle(articles.length, idx);
   articles.push(article);
+  addInternalLinks(articles, [article]);
+  articles = trimArticles(articles);
   fs.writeFileSync(articlesPath, JSON.stringify(articles, null, 2), 'utf-8');
   console.log(`[${article.date}] Published: ${article.title}`);
 }
