@@ -92,6 +92,18 @@ const bank = {
       'Build your prompt library starting today. Save good prompts, discard bad ones, and refine your approach based on what actually works.',
       'Experiment with one new technique each day for two weeks. By day 14, you will be prompting at an advanced level.',
     ],
+
+    faqs: [
+      { q: 'Is ChatGPT free?', a: 'ChatGPT offers a free tier with GPT-3.5 access. ChatGPT Plus (US$20/month) unlocks GPT-4, faster responses, and new features. Consider your usage volume when choosing a tier.' },
+      { q: 'Can ChatGPT browse the internet?', a: 'ChatGPT Plus with Bing browsing can search the web for real-time information. The free version uses training data only with a fixed knowledge cutoff.' },
+      { q: 'What is the maximum input length?', a: 'GPT-4 Turbo supports 128K tokens — about 200 pages of text. This enables processing entire books or codebases in one conversation.' },
+      { q: 'Can I use ChatGPT commercially?', a: 'Yes, ChatGPT output can be used commercially. Review OpenAI\'s terms for specific restrictions on competitive or high-volume use.' }
+    ],
+    deepDives: [
+      'Few-shot prompting dramatically improves output quality. Provide 3 examples of the exact format and tone you want before asking your actual question. The AI identifies patterns from your examples and applies them consistently. This works for any task type — writing, analysis, or coding.',
+      'Chain-of-thought prompting asks the AI to reason step by step before answering. Studies show accuracy improves by 20-30% on reasoning tasks. Simply add "Let\'s think step by step" to complex prompts for noticeably better results.',
+      'Temperature control fine-tunes AI creativity. Lower values (0.1-0.3) produce focused, deterministic outputs ideal for factual tasks. Higher values (0.7-0.9) generate creative variations perfect for brainstorming. Match temperature to your task type.'
+    ],
   },
 
   'AI Art': {
@@ -168,6 +180,18 @@ const bank = {
       'Start building your prompt library today. Save one great prompt each day and within a month you will have a powerful creative resource.',
       'Experiment with a tool you have not tried yet. If you use Midjourney, try DALL-E. Each tool has unique strengths worth exploring.',
     ],
+
+    faqs: [
+      { q: 'Which AI art tool is best?', a: 'Midjourney excels at artistic quality, DALL-E 3 at following prompts precisely, and Stable Diffusion at customization and control. For free, start with Stable Diffusion which runs locally.' },
+      { q: 'Can I sell AI-generated art?', a: 'Most tools allow commercial use. Midjourney paid plans include commercial rights. DALL-E images are owned by the creator. Always check each tool\'s licensing terms.' },
+      { q: 'What makes a good prompt?', a: 'A strong prompt includes: subject + environment + style + technical parameters. Example: "a serene mountain lake at sunrise, photorealistic, 4K, dramatic lighting."' },
+      { q: 'How do I get consistent characters?', a: 'Use seed values or reference images. Midjourney’s --cref parameter maintains character appearance across multiple generations.' }
+    ],
+    deepDives: [
+      'Negative prompts are as important as positive ones. In Stable Diffusion, specifying what you don\'t want eliminates common artifacts. Adding "no blurry, no extra limbs, no distorted faces" dramatically improves output quality with minimal effort.',
+      'Style blending creates unique aesthetics. Combine two artists or movements: "Studio Ghibli meets cyberpunk" or "Van Gogh style with photorealistic lighting." Experiment with style weights in Midjourney using the --sw parameter for precise control.',
+      'Inpainting lets you fix specific areas without regenerating the entire image. Use this for correcting hands, adding objects, or changing backgrounds. Most advanced tools support this workflow and it saves significant time.'
+    ],
   },
 
   'AI Tools': {
@@ -237,6 +261,18 @@ const bank = {
       'Identify the one task that wastes most of your time. Find the AI tool for that specific task from this list and start using it today.',
       'Pick one tool category, try the free tier for a week, and track how much time you save. Let the data guide your next tool decision.',
     ],
+
+    faqs: [
+      { q: 'Are free AI tools reliable?', a: 'Many offer generous free tiers sufficient for daily use. Google Gemini, Claude, and Canva provide capable free versions. Evaluate based on your specific needs.' },
+      { q: 'How do I choose the right tool?', a: 'Start with your specific need: writing (Claude/Gemini), design (Canva/Firefly), coding (Copilot/Cursor), research (Perplexity). Master one tool per category.' },
+      { q: 'How often do AI tools update?', a: 'Major updates arrive every 3-6 months. Follow official blogs and AI news sources to stay current with new features and improvements.' },
+      { q: 'Can AI tools replace my workflow?', a: 'AI augments rather than replaces. Professionals using AI tools outperform those who don\'t. Focus on integrating AI into existing workflows.' }
+    ],
+    deepDives: [
+      'Tool stacking multiplies productivity significantly. Use AI writing tools for drafts, AI design tools for visuals, and AI coding tools for implementation. Each tool covers different parts of your workflow, creating a compound productivity boost.',
+      'The learning investment pays off quickly. Spending 10 hours learning an AI tool can save 100+ hours annually. Focus on mastering 2-3 tools deeply rather than dabbling in many. Deep knowledge produces better results than shallow familiarity.',
+      'Evaluate tools with structured trials. Test each tool for one week with real tasks. Document what works and what doesn\'t. Most tools offer free trials — use them systematically to build an informed toolkit.'
+    ],
   },
 
   'AI Coding': {
@@ -304,6 +340,18 @@ const bank = {
       'If you are a developer, install GitHub Copilot or Cursor today. The free tiers are enough to see immediate productivity improvements.',
       'If you are a non-programmer with an app idea, try Bolt.new. Describe your concept and see a working prototype in minutes.',
     ],
+
+    faqs: [
+      { q: 'Which AI coding tool is best?', a: 'Cursor for AI-first experience, Copilot for IDE integration, Codeium for free unlimited use. All three significantly boost productivity for different use cases.' },
+      { q: 'Can AI write production code?', a: 'Yes, but always review. AI handles well-defined tasks well but may generate bugs for complex logic. Treat AI output as a smart junior developer\'s work.' },
+      { q: 'Do I need coding experience?', a: 'Some experience helps, but no-code tools like Bolt.new and Lovable let non-programmers build functional apps with natural language descriptions.' },
+      { q: 'Will AI replace developers?', a: 'No — AI handles boilerplate so developers focus on architecture and complex problems. Demand for skilled developers who use AI effectively is growing.' }
+    ],
+    deepDives: [
+      'Composer mode in Cursor handles multi-file edits seamlessly. Describe the feature you want, and it creates, modifies, and connects files automatically. This is the closest AI gets to full-stack development assistance.',
+      'Context is everything when coding with AI. Open relevant files, describe architecture patterns, and provide examples before requesting complex changes. Well-structured context produces significantly better code output.',
+      'Test generation is a superpower most developers underutilize. Ask AI to write unit tests for your existing code. This catches bugs early and documents expected behavior. AI excels at test writing because tests follow clear patterns.'
+    ],
   },
 
   'Make Money': {
@@ -370,6 +418,18 @@ const bank = {
     ctas: [
       'Pick one method from this list and start this week. Not next month, this week. The barrier to starting has never been lower.',
       'Create a profile on Upwork or Fiverr today. List one AI service you can deliver. Your first client is closer than you think.',
+    ],
+
+    faqs: [
+      { q: 'How much can I earn with AI?', a: 'Side income of US$500-3,000/month is achievable through freelancing. Full-time AI specialists earn US$60-150K annually depending on specialization.' },
+      { q: 'What AI skills are most profitable?', a: 'Content creation, custom GPT development, automation consulting, AI art commissions, and training services. Each has growing demand with limited supply.' },
+      { q: 'Do I need technical skills?', a: 'No. Many profitable AI services use consumer tools. Content creation, prompt engineering, and consulting require zero coding experience.' },
+      { q: 'Where do I find clients?', a: 'Upwork and Fiverr for beginners. LinkedIn and cold outreach for higher-paying clients. Build a portfolio showcasing specific AI projects.' }
+    ],
+    deepDives: [
+      'The automation agency model works well for beginners. Offer to automate 1-2 business processes using AI tools. Charge US$500-2,000 per setup plus monthly maintenance. Start with local businesses that need simple AI automations.',
+      'Content multiplication creates scalable income. A single blog post idea can become an article, social posts, an email newsletter, a video script, and a podcast outline. Package this as a content service for US$1,000-3,000/month.',
+      'Niche specialization commands premium rates. Instead of general AI services, specialize — "AI-powered real estate listings" or "AI-generated book illustrations." Specialists charge 3-5x more than generalists.'
     ],
   },
 
@@ -441,6 +501,18 @@ const bank = {
       'Try Claude 4 for free at claude.ai. Experience the 200K context window yourself by uploading a long document and asking detailed questions about it.',
       'Sign up for the Claude API at console.anthropic.com. The free credits are enough to build and test a complete prototype application.',
     ],
+
+    faqs: [
+      { q: 'Is Claude better than ChatGPT?', a: 'Claude excels at coding, long-form writing, and safety. ChatGPT has a broader plugin ecosystem and DALL-E integration. The best choice depends on your primary use case.' },
+      { q: 'What is Claude\'s context window?', a: '200K tokens — Claude can process entire books or large codebases in a single session. This is its biggest advantage for research and analysis tasks.' },
+      { q: 'How much does Claude cost?', a: 'Claude Pro (US$20/month) for individual use. Free tier available with limited messages. API access is usage-based with competitive pricing.' },
+      { q: 'Can Claude analyze images?', a: 'Yes, Claude 4 supports image and document analysis. Upload charts, diagrams, screenshots, or photographs for AI-powered analysis and interpretation.' }
+    ],
+    deepDives: [
+      'The 200K context window changes how you work with AI. Upload entire documentation sets, codebases, or research papers for comprehensive analysis. Claude can reference any part of massive documents, ideal for complex research tasks.',
+      'Claude\'s safety features make it enterprise-ready. Built-in guardrails, reduced bias, and transparent limitations suit regulated industries. Document use cases with Anthropic for compliance in healthcare, finance, or legal applications.',
+      'The Projects feature organizes related work effectively. Upload reference documents, maintain consistent context across sessions, and share spaces with team members. This is Claude\'s strongest feature for collaborative work.'
+    ],
   },
 };
 
@@ -451,13 +523,13 @@ function buildTemplates() {
     const pool = bank[cat];
     for (let t = 0; t < 8; t++) {
       const seed = t * 7 + 3;
-      const sectionCount = 3 + (t % 3);
+      const sectionCount = 4 + (t % 3);
       const mySections = [];
       for (let s = 0; s < sectionCount; s++) {
         mySections.push(pool.sections[(seed + s * 5) % pool.sections.length]);
       }
       const tipStart = seed % pool.tips.length;
-      const tipCount = 4 + (t % 3);
+      const tipCount = 5 + (t % 3);
       const myTips = [];
       for (let p = 0; p < tipCount; p++) {
         myTips.push(pool.tips[(tipStart + p) % pool.tips.length]);
@@ -471,10 +543,7 @@ function buildTemplates() {
 
       templates.push({
         category: cat,
-        title: (n) => {
-          const tList = pool.titles;
-          return tList[(titleOffset + Math.floor(Math.random() * tList.length)) % tList.length].t(n);
-        },
+        title: (n) => pool.titles[titleOffset % pool.titles.length].t(n),
         summary: () => pool.summaries[sumIdx],
         keywords: () => pool.keywords[kwIdx],
         content: () => {
@@ -484,9 +553,23 @@ function buildTemplates() {
             lines.push(`## ${s.h}`);
             lines.push(...s.c);
           }
+          if (pool.deepDives && pool.deepDives.length > 0) {
+            const picks = [...pool.deepDives].sort(() => Math.random() - 0.5).slice(0, 1 + Math.floor(Math.random() * 2));
+            for (const d of picks) {
+              lines.push(`## Deep Dive`);
+              lines.push(d);
+            }
+          }
+          if (pool.faqs && pool.faqs.length > 0) {
+            const picks = [...pool.faqs].sort(() => Math.random() - 0.5).slice(0, 1 + Math.floor(Math.random() * 2));
+            for (const f of picks) {
+              lines.push(`### Q: ${f.q}`);
+              lines.push(f.a);
+            }
+          }
           lines.push('## Pro Tips');
           const shuffled = [...myTips].sort(() => Math.random() - 0.5);
-          const count = 3 + Math.floor(Math.random() * 2);
+          const count = 4 + Math.floor(Math.random() * 2);
           for (let i = 0; i < count && i < shuffled.length; i++) {
             lines.push(`### ${shuffled[i].t}`);
             lines.push(shuffled[i].d);
@@ -544,13 +627,18 @@ function trimArticles(articles) {
   return articles;
 }
 
-function generateArticle(index, templateIdx) {
+function generateArticle(index, templateIdx, existingTitles) {
   const template = articleTemplates[templateIdx];
-  const n = 5 + Math.floor(Math.random() * 10);
-  const content = template.content();
-  const title = template.title(n);
-  const id = title.toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').slice(0, 60);
+  let attempts = 0;
+  let title, n, content, id;
+  do {
+    n = 5 + Math.floor(Math.random() * 10);
+    title = template.title(n);
+    id = title.toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').slice(0, 60);
+    attempts++;
+  } while (existingTitles && existingTitles.has(title) && attempts < 5);
+  content = template.content();
   idCounter++;
   return {
     id: id + '-' + idCounter.toString(36),
@@ -568,10 +656,12 @@ function generateArticle(index, templateIdx) {
 function generateBatch(count) {
   let articles = [];
   try { articles = JSON.parse(fs.readFileSync(articlesPath, 'utf-8')); } catch(e) { articles = []; }
+  const existingTitles = new Set(articles.map(a => a.title));
   const newArticles = [];
   for (let i = 0; i < count; i++) {
     const idx = pickTemplateIndex(articles);
-    const article = generateArticle(articles.length, idx);
+    const article = generateArticle(articles.length, idx, existingTitles);
+    existingTitles.add(article.title);
     articles.push(article);
     newArticles.push(article);
   }
@@ -584,8 +674,9 @@ function generateBatch(count) {
 function generateDaily() {
   let articles = [];
   try { articles = JSON.parse(fs.readFileSync(articlesPath, 'utf-8')); } catch(e) { articles = []; }
+  const existingTitles = new Set(articles.map(a => a.title));
   const idx = pickTemplateIndex(articles);
-  const article = generateArticle(articles.length, idx);
+  const article = generateArticle(articles.length, idx, existingTitles);
   articles.push(article);
   addInternalLinks(articles, [article]);
   articles = trimArticles(articles);
