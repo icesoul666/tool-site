@@ -8,6 +8,30 @@ const PORT = process.env.PORT || 4567;
 
 app.use(cors());
 app.use(express.json());
+
+// SSR meta tags for article pages
+app.get('/blog/article.html', (req, res, next) => {
+  const id = req.query.id;
+  if (!id) return next();
+  const articles = loadArticles();
+  const article = articles.find(a => a.id === id);
+  if (!article) return next();
+  const template = path.join(__dirname, '../frontend/blog/article.html');
+  fs.readFile(template, 'utf-8', (err, html) => {
+    if (err) return next();
+    const desc = (article.summary || '').replace(/<[^>]+>/g, '').slice(0, 160);
+    const title = article.title + ' - AI Tools Tutorial';
+    html = html
+      .replace('<title>Article - AI Tools Tutorial</title>', '<title>' + title + '</title>')
+      .replace('<meta name="description" content="AI tools tutorial and review article">', '<meta name="description" content="' + desc.replace(/"/g, '&quot;') + '">')
+      .replace('<meta property="og:title" content="Article - AI Tools Tutorial">', '<meta property="og:title" content="' + article.title + '">')
+      .replace('<meta property="og:description" content="AI tools tutorial and review article">', '<meta property="og:description" content="' + desc.replace(/"/g, '&quot;') + '">')
+      .replace('<meta property="og:url" content="https://tool-site-p80e.onrender.com/blog/article.html">', '<meta property="og:url" content="https://tool-site-p80e.onrender.com/blog/article.html?id=' + id + '">')
+      .replace('<link rel="canonical" href="https://tool-site-p80e.onrender.com/blog/article.html">', '<link rel="canonical" href="https://tool-site-p80e.onrender.com/blog/article.html?id=' + id + '">');
+    res.send(html);
+  });
+});
+
 app.use(express.static(path.join(__dirname, '../frontend')));
 
 const articlesPath = path.join(__dirname, 'articles', 'articles.json');
