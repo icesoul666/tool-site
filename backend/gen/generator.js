@@ -627,6 +627,10 @@ function trimArticles(articles) {
   return articles;
 }
 
+function normalizeTitle(title) {
+  return title.replace(/\d+/g, '{N}');
+}
+
 function generateArticle(index, templateIdx, existingTitles) {
   const template = articleTemplates[templateIdx];
   let attempts = 0;
@@ -637,7 +641,7 @@ function generateArticle(index, templateIdx, existingTitles) {
     id = title.toLowerCase()
       .replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').slice(0, 60);
     attempts++;
-  } while (existingTitles && existingTitles.has(title) && attempts < 5);
+  } while (existingTitles && existingTitles.has(normalizeTitle(title)) && attempts < 5);
   content = template.content();
   idCounter++;
   return {
@@ -656,12 +660,12 @@ function generateArticle(index, templateIdx, existingTitles) {
 function generateBatch(count) {
   let articles = [];
   try { articles = JSON.parse(fs.readFileSync(articlesPath, 'utf-8')); } catch(e) { articles = []; }
-  const existingTitles = new Set(articles.map(a => a.title));
+  const existingTitles = new Set(articles.map(a => normalizeTitle(a.title)));
   const newArticles = [];
   for (let i = 0; i < count; i++) {
     const idx = pickTemplateIndex(articles);
     const article = generateArticle(articles.length, idx, existingTitles);
-    existingTitles.add(article.title);
+    existingTitles.add(normalizeTitle(article.title));
     articles.push(article);
     newArticles.push(article);
   }
@@ -674,7 +678,7 @@ function generateBatch(count) {
 function generateDaily() {
   let articles = [];
   try { articles = JSON.parse(fs.readFileSync(articlesPath, 'utf-8')); } catch(e) { articles = []; }
-  const existingTitles = new Set(articles.map(a => a.title));
+  const existingTitles = new Set(articles.map(a => normalizeTitle(a.title)));
   const idx = pickTemplateIndex(articles);
   const article = generateArticle(articles.length, idx, existingTitles);
   articles.push(article);
