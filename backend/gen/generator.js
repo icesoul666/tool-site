@@ -51,7 +51,7 @@ const bank = {
       { h: 'Why Prompt Engineering Matters', c: ['The same AI model produces vastly different results depending on input phrasing. Good prompt engineering is the key to unlocking superior output quality.', 'Professional prompt writers earn six figures because this skill dramatically impacts AI usefulness. A few word changes can mean the difference between generic and exceptional answers.'] },
       { h: 'Role Playing Method', c: ['Assigning a specific role forces the AI into a focused mindset. Instead of asking "Write a marketing email", try "You are a senior marketing manager writing to enterprise clients."', 'Role playing works because it provides context that helps the AI understand tone, expertise level, and audience. Experiment with roles like lawyer, teacher, analyst, or consultant.'] },
       { h: 'Step-by-Step Instructions', c: ['Complex tasks work better when broken into smaller steps. Rather than asking for everything at once, guide the AI through each stage of the process.', 'Example: first ask for an outline, then expand each section, then request revisions. This produces more accurate and complete results than a single complex prompt.'] },
-      { h: 'Using Examples Effectively', c: ['Providing 1-2 examples of your desired output dramatically improves consistency. AI excels at pattern matching — good examples guide it to exactly what you want.', 'Include examples of tone, structure, length, and format. The more specific your examples, the better the AI matches your expectations.'] },
+      { h: 'Using Examples Effectively', c: ['Providing 1-2 examples of your desired output dramatically improves consistency. AI excels at pattern matching �?good examples guide it to exactly what you want.', 'Include examples of tone, structure, length, and format. The more specific your examples, the better the AI matches your expectations.'] },
       { h: 'Setting Constraints', c: ['Specifying word counts, formats, tones, and expertise levels prevents overly broad answers. Clear constraints focus the AI on exactly what matters for your use case.', 'Include both what to do and what not to do. For example: "Write a professional email under 150 words. Do not use jargon or overly casual language."'] },
       { h: 'Structured Output', c: ['Requesting specific output formats like tables, bullet points, or JSON makes AI responses more usable. Structured data is easier to process, edit, and integrate into workflows.', 'Example: "List the top 5 features in a table with columns for Feature Name, Benefit, and Difficulty Level." This produces immediately useful output.'] },
       { h: 'Iterative Refinement', c: ['The first answer is rarely perfect. Treat ChatGPT output as a first draft that you refine through follow-up prompts. Each iteration improves quality.', 'Ask the AI to expand, simplify, rephrase, or add examples. Iterative prompting is the hallmark of advanced ChatGPT users.'] },
@@ -60,7 +60,7 @@ const bank = {
       { h: 'ChatGPT for Content Creation', c: ['Generate blog posts, social media content, ad copy, and email newsletters faster. Maintain brand voice by providing examples of your existing content style.', 'Use ChatGPT as a first draft generator, then refine. Most professional content creators save 2-3 hours per piece by starting with AI-generated drafts.'] },
       { h: 'ChatGPT for Data Analysis', c: ['Upload CSV data and ask ChatGPT to identify trends, create summaries, and generate insights. This works for sales data, survey responses, and operational metrics.', 'For sensitive data, use anonymized samples. ChatGPT can create visualizations, write analysis reports, and suggest data-driven recommendations.'] },
       { h: 'Common Prompting Mistakes', c: ['Using vague prompts like "write something about AI" produces generic results. Always include specific context, format requirements, and quality expectations.', 'Other common mistakes include not providing examples, accepting the first answer, and forgetting to set tone constraints. Each of these reduces output quality.'] },
-      { h: 'Advanced Multi-Step Workflows', c: ['Combine techniques for maximum impact. Example: Role play + step-by-step + structured output — assign a persona, guide through stages, and request table-formatted results.', 'Complex workflows can chain 5-10 prompts. Save successful sequences as reusable templates for future tasks with similar requirements.'] },
+      { h: 'Advanced Multi-Step Workflows', c: ['Combine techniques for maximum impact. Example: Role play + step-by-step + structured output �?assign a persona, guide through stages, and request table-formatted results.', 'Complex workflows can chain 5-10 prompts. Save successful sequences as reusable templates for future tasks with similar requirements.'] },
       { h: 'ChatGPT Integrations', c: ['Connect ChatGPT to your tools via API for automated workflows. Email clients, project management tools, CRMs, and document editors all have ChatGPT integration options.', 'Platforms like Zapier and Make let you build multi-step automations that pass data between ChatGPT and hundreds of other applications.'] },
       { h: 'Security Best Practices', c: ['Never share sensitive personal or financial information with ChatGPT. Use anonymized data for analysis and review AI-generated content before sharing or publishing.', 'For business use, consider ChatGPT Enterprise which offers data privacy guarantees. Avoid pasting passwords, API keys, or confidential documents.'] },
       { h: 'Measuring AI Productivity Gains', c: ['Track time spent on tasks before and after using ChatGPT. Most users report 30-50% time savings on writing, research, and data processing tasks.', 'Set specific metrics: emails written per hour, report generation time, customer inquiries handled. Quantifying improvements justifies continued AI investment.'] },
@@ -96,11 +96,11 @@ const bank = {
     faqs: [
       { q: 'Is ChatGPT free?', a: 'ChatGPT offers a free tier with GPT-3.5 access. ChatGPT Plus (US$20/month) unlocks GPT-4, faster responses, and new features. Consider your usage volume when choosing a tier.' },
       { q: 'Can ChatGPT browse the internet?', a: 'ChatGPT Plus with Bing browsing can search the web for real-time information. The free version uses training data only with a fixed knowledge cutoff.' },
-      { q: 'What is the maximum input length?', a: 'GPT-4 Turbo supports 128K tokens — about 200 pages of text. This enables processing entire books or codebases in one conversation.' },
+      { q: 'What is the maximum input length?', a: 'GPT-4 Turbo supports 128K tokens �?about 200 pages of text. This enables processing entire books or codebases in one conversation.' },
       { q: 'Can I use ChatGPT commercially?', a: 'Yes, ChatGPT output can be used commercially. Review OpenAI\'s terms for specific restrictions on competitive or high-volume use.' }
     ],
     deepDives: [
-      'Few-shot prompting dramatically improves output quality. Provide 3 examples of the exact format and tone you want before asking your actual question. The AI identifies patterns from your examples and applies them consistently. This works for any task type — writing, analysis, or coding.',
+      'Few-shot prompting dramatically improves output quality. Provide 3 examples of the exact format and tone you want before asking your actual question. The AI identifies patterns from your examples and applies them consistently. This works for any task type �?writing, analysis, or coding.',
       'Chain-of-thought prompting asks the AI to reason step by step before answering. Studies show accuracy improves by 20-30% on reasoning tasks. Simply add "Let\'s think step by step" to complex prompts for noticeably better results.',
       'Temperature control fine-tunes AI creativity. Lower values (0.1-0.3) produce focused, deterministic outputs ideal for factual tasks. Higher values (0.7-0.9) generate creative variations perfect for brainstorming. Match temperature to your task type.'
     ],
@@ -163,7 +163,7 @@ const bank = {
       { t: 'Experiment with Aspect Ratios', d: 'Different ratios dramatically change composition. Try 16:9 for landscapes, 4:3 for standard photos, 9:16 for phone wallpapers, 1:1 for social media.' },
       { t: 'Combine Tools', d: 'Generate in Midjourney, refine in Photoshop or Canva. No single AI tool does everything perfectly. Combining them produces professional results.' },
       { t: 'Build a Prompt Library', d: 'Save successful prompts organized by style, subject, and use case. A good prompt library is the most valuable asset for consistent AI art creation.' },
-      { t: 'Understand Lighting Terms', d: 'Cinematic lighting, golden hour, studio softbox, dramatic shadows, volumetric lighting — each produces distinct moods. Learn these terms for better control.' },
+      { t: 'Understand Lighting Terms', d: 'Cinematic lighting, golden hour, studio softbox, dramatic shadows, volumetric lighting �?each produces distinct moods. Learn these terms for better control.' },
       { t: 'Use Style Weights', d: 'In Midjourney, the sw parameter controls style influence. Lower values produce more literal interpretations, higher values produce more artistic interpretations.' },
       { t: 'Iterate on Winners', d: 'When you get close to what you want, use that image as a starting point for further refinement rather than starting from scratch.' },
       { t: 'Know When to Edit Manually', d: 'AI struggles with precise details like fingers, text, and logos. Sometimes the fastest path to a perfect image is AI generation plus manual editing.' },
@@ -271,7 +271,7 @@ const bank = {
     deepDives: [
       'Tool stacking multiplies productivity significantly. Use AI writing tools for drafts, AI design tools for visuals, and AI coding tools for implementation. Each tool covers different parts of your workflow, creating a compound productivity boost.',
       'The learning investment pays off quickly. Spending 10 hours learning an AI tool can save 100+ hours annually. Focus on mastering 2-3 tools deeply rather than dabbling in many. Deep knowledge produces better results than shallow familiarity.',
-      'Evaluate tools with structured trials. Test each tool for one week with real tasks. Document what works and what doesn\'t. Most tools offer free trials — use them systematically to build an informed toolkit.'
+      'Evaluate tools with structured trials. Test each tool for one week with real tasks. Document what works and what doesn\'t. Most tools offer free trials �?use them systematically to build an informed toolkit.'
     ],
   },
 
@@ -332,7 +332,7 @@ const bank = {
       { t: 'Combine Multiple Tools', d: 'Use different AI coding tools for different tasks. Copilot for completion, ChatGPT for architecture, and Cursor for complex refactoring.' },
     ],
     conclusions: [
-      'AI coding tools are not replacing developers — they are making developers more productive and making development accessible to non-programmers.',
+      'AI coding tools are not replacing developers �?they are making developers more productive and making development accessible to non-programmers.',
       'The best AI coding tool depends on your specific needs. Developers should try multiple tools. Non-programmers should start with no-code platforms.',
       'Whether you are building a simple website or complex application, AI tools can dramatically reduce development time. Start using them today.',
     ],
@@ -345,7 +345,7 @@ const bank = {
       { q: 'Which AI coding tool is best?', a: 'Cursor for AI-first experience, Copilot for IDE integration, Codeium for free unlimited use. All three significantly boost productivity for different use cases.' },
       { q: 'Can AI write production code?', a: 'Yes, but always review. AI handles well-defined tasks well but may generate bugs for complex logic. Treat AI output as a smart junior developer\'s work.' },
       { q: 'Do I need coding experience?', a: 'Some experience helps, but no-code tools like Bolt.new and Lovable let non-programmers build functional apps with natural language descriptions.' },
-      { q: 'Will AI replace developers?', a: 'No — AI handles boilerplate so developers focus on architecture and complex problems. Demand for skilled developers who use AI effectively is growing.' }
+      { q: 'Will AI replace developers?', a: 'No �?AI handles boilerplate so developers focus on architecture and complex problems. Demand for skilled developers who use AI effectively is growing.' }
     ],
     deepDives: [
       'Composer mode in Cursor handles multi-file edits seamlessly. Describe the feature you want, and it creates, modifies, and connects files automatically. This is the closest AI gets to full-stack development assistance.',
@@ -389,7 +389,7 @@ const bank = {
       'Making money with AI does not require being a technical expert. The most profitable AI businesses are service-based, helping companies adopt and integrate AI into their existing workflows.',
     ],
     sections: [
-      { h: 'AI Automation Agency', c: ['Build AI automation workflows for businesses — chatbots, data entry automation, report generation. Charge $500-$3,000 per month per client for ongoing service.', 'Start by identifying local businesses with repetitive manual tasks. Offer a free audit showing how AI could save them time, then propose a paid automation setup.'] },
+      { h: 'AI Automation Agency', c: ['Build AI automation workflows for businesses �?chatbots, data entry automation, report generation. Charge $500-$3,000 per month per client for ongoing service.', 'Start by identifying local businesses with repetitive manual tasks. Offer a free audit showing how AI could save them time, then propose a paid automation setup.'] },
       { h: 'AI Content Creation', c: ['Use AI to generate SEO articles, social media posts, and video scripts. Freelance rates range from $30-$100 per hour depending on your specialization and portfolio.', 'Content creation is the easiest AI freelancing entry point. Every business needs content, and AI makes production 5x faster. Build a portfolio of 5 sample pieces to start.'] },
       { h: 'AI Courses and Tutorials', c: ['Package your AI skills into online courses on Udemy or Skillshare. Create once, sell forever. AI skills are in high demand and course quality standards are still low.', 'Focus on practical, project-based courses. "Build a ChatGPT chatbot in 1 hour" sells better than theoretical AI explanations. Price courses at $20-$50.'] },
       { h: 'AI Prompt Packs', c: ['Sell high-quality prompt templates as digital products on Gumroad or Etsy. Good prompt packs sell for $5-$50 each and require no ongoing work after creation.', 'Create prompt packs for specific use cases: "50 ChatGPT prompts for real estate agents", "Marketing prompt pack for small businesses". Specificity sells.'] },
@@ -429,7 +429,7 @@ const bank = {
     deepDives: [
       'The automation agency model works well for beginners. Offer to automate 1-2 business processes using AI tools. Charge US$500-2,000 per setup plus monthly maintenance. Start with local businesses that need simple AI automations.',
       'Content multiplication creates scalable income. A single blog post idea can become an article, social posts, an email newsletter, a video script, and a podcast outline. Package this as a content service for US$1,000-3,000/month.',
-      'Niche specialization commands premium rates. Instead of general AI services, specialize — "AI-powered real estate listings" or "AI-generated book illustrations." Specialists charge 3-5x more than generalists.'
+      'Niche specialization commands premium rates. Instead of general AI services, specialize �?"AI-powered real estate listings" or "AI-generated book illustrations." Specialists charge 3-5x more than generalists.'
     ],
   },
 
@@ -479,7 +479,7 @@ const bank = {
       { h: 'System Prompts for Claude', c: ['The system parameter lets you define Claude behavior, expertise level, and constraints. A well-written system prompt dramatically improves output quality and consistency.', 'System prompts are especially important for production applications. They ensure consistent behavior across different users and sessions. Invest time in crafting effective system prompts.'] },
       { h: 'Streaming Responses', c: ['Set stream parameter to true for real-time token-by-token output. Essential for chat applications where users expect immediate feedback. Implement proper error handling for interrupted streams.', 'Streaming reduces perceived latency significantly. Users see text appearing as it is generated rather than waiting for complete responses. This improves user experience dramatically.'] },
       { h: 'Function Calling with Claude', c: ['Define tools as JSON schema objects. Claude can decide when to call them, extract parameters from conversations, and use returned data in its responses. This enables powerful automation workflows.', 'Function calling enables Claude to interact with external systems, databases, and APIs. Use cases include data retrieval, form filling, and triggering automated actions based on conversation context.'] },
-      { h: 'Context Windows and Memory', c: ['Claude 200K token context window is industry-leading. Be strategic about what you include — prioritize recent and relevant information. Use summarization techniques for managing longer contexts.', 'Long context is valuable for processing large documents, extended conversations, and complex codebases. However, model performance can degrade at maximum context length. Test with your specific use case.'] },
+      { h: 'Context Windows and Memory', c: ['Claude 200K token context window is industry-leading. Be strategic about what you include �?prioritize recent and relevant information. Use summarization techniques for managing longer contexts.', 'Long context is valuable for processing large documents, extended conversations, and complex codebases. However, model performance can degrade at maximum context length. Test with your specific use case.'] },
       { h: 'Cost Optimization Strategies', c: ['Use shorter prompts, cache common prefixes, batch similar requests, and choose the appropriate model for each task. Haiku for simple tasks, Sonnet for complex analysis.', 'Monitor usage through the Anthropic dashboard. Set up budget alerts for production applications. Consider caching responses for frequently repeated requests to reduce API costs.'] },
     ],
     tips: [
@@ -504,7 +504,7 @@ const bank = {
 
     faqs: [
       { q: 'Is Claude better than ChatGPT?', a: 'Claude excels at coding, long-form writing, and safety. ChatGPT has a broader plugin ecosystem and DALL-E integration. The best choice depends on your primary use case.' },
-      { q: 'What is Claude\'s context window?', a: '200K tokens — Claude can process entire books or large codebases in a single session. This is its biggest advantage for research and analysis tasks.' },
+      { q: 'What is Claude\'s context window?', a: '200K tokens �?Claude can process entire books or large codebases in a single session. This is its biggest advantage for research and analysis tasks.' },
       { q: 'How much does Claude cost?', a: 'Claude Pro (US$20/month) for individual use. Free tier available with limited messages. API access is usage-based with competitive pricing.' },
       { q: 'Can Claude analyze images?', a: 'Yes, Claude 4 supports image and document analysis. Upload charts, diagrams, screenshots, or photographs for AI-powered analysis and interpretation.' }
     ],
@@ -539,11 +539,10 @@ function buildTemplates() {
       const openIdx = t % pool.openings.length;
       const sumIdx = t % pool.summaries.length;
       const kwIdx = t % pool.keywords.length;
-      const titleOffset = t * 3;
 
       templates.push({
         category: cat,
-        title: (n) => pool.titles[titleOffset % pool.titles.length].t(n),
+        title: (pi, n) => pool.titles[pi % pool.titles.length].t(n),
         summary: () => pool.summaries[sumIdx],
         keywords: () => pool.keywords[kwIdx],
         content: () => {
@@ -631,18 +630,40 @@ function normalizeTitle(title) {
   return title.replace(/\d+/g, '{N}');
 }
 
-function generateArticle(index, templateIdx, existingTitles) {
+function buildTitleCombos(template) {
+  const pool = bank[template.category];
+  const combos = [];
+  for (let pi = 0; pi < pool.titles.length; pi++) {
+    for (let n = 5; n <= 14; n++) combos.push([pi, n]);
+  }
+  for (let i = combos.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [combos[i], combos[j]] = [combos[j], combos[i]];
+  }
+  return combos;
+}
+
+function generateArticle(index, templateIdx, exactTitles) {
   const template = articleTemplates[templateIdx];
-  let attempts = 0;
-  let title, n, content, id;
-  do {
-    n = 5 + Math.floor(Math.random() * 10);
-    title = template.title(n);
-    id = title.toLowerCase()
-      .replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').slice(0, 60);
-    attempts++;
-  } while (existingTitles && existingTitles.has(normalizeTitle(title)) && attempts < 5);
-  content = template.content();
+  const combos = buildTitleCombos(template);
+  const normTitles = new Set([...exactTitles].map(normalizeTitle));
+  let title = null;
+  for (const [pi, n] of combos) {
+    const t = template.title(pi, n);
+    if (!normTitles.has(normalizeTitle(t))) { title = t; break; }
+  }
+  if (!title) {
+    for (const [pi, n] of combos) {
+      const t = template.title(pi, n);
+      if (!exactTitles.has(t)) { title = t; break; }
+    }
+  }
+  if (!title) {
+    const [pi, n] = combos[Math.floor(Math.random() * combos.length)];
+    title = template.title(pi, n);
+  }
+  const id = title.toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').slice(0, 60);
   idCounter++;
   return {
     id: id + '-' + idCounter.toString(36),
@@ -651,7 +672,7 @@ function generateArticle(index, templateIdx, existingTitles) {
     summary: template.summary(),
     keywords: template.keywords(),
     category: template.category,
-    content,
+    content: template.content(),
     image: null,
     date: new Date().toISOString().split('T')[0]
   };
@@ -660,12 +681,12 @@ function generateArticle(index, templateIdx, existingTitles) {
 function generateBatch(count) {
   let articles = [];
   try { articles = JSON.parse(fs.readFileSync(articlesPath, 'utf-8')); } catch(e) { articles = []; }
-  const existingTitles = new Set(articles.map(a => normalizeTitle(a.title)));
+  const existingTitles = new Set(articles.map(a => a.title));
   const newArticles = [];
   for (let i = 0; i < count; i++) {
     const idx = pickTemplateIndex(articles);
     const article = generateArticle(articles.length, idx, existingTitles);
-    existingTitles.add(normalizeTitle(article.title));
+    existingTitles.add(article.title);
     articles.push(article);
     newArticles.push(article);
   }
@@ -678,7 +699,7 @@ function generateBatch(count) {
 function generateDaily() {
   let articles = [];
   try { articles = JSON.parse(fs.readFileSync(articlesPath, 'utf-8')); } catch(e) { articles = []; }
-  const existingTitles = new Set(articles.map(a => normalizeTitle(a.title)));
+  const existingTitles = new Set(articles.map(a => a.title));
   const idx = pickTemplateIndex(articles);
   const article = generateArticle(articles.length, idx, existingTitles);
   articles.push(article);
